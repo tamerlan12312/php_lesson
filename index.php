@@ -1,1 +1,1 @@
-Php
+<?php echo "php" ?>
