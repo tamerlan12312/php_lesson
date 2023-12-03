@@ -1,6 +1,6 @@
 <?php
 
-   $number1 = 10 ;
+   $number1 = 10 ; 
    $number2 = 20 ;
 // - // comment seklinde alinir # - tek comment /*  code */ cox setirli comment
 //    $1number = 40 ; variable 1ci herfi reqem olmamalidir reqem sonda olmalidir
@@ -13,6 +13,6 @@ $ad = "Tamerlan" ;   // cut ve tek dirnaq daxilindede string kimi yazmaq olur
 $soyad = 'Ferecullayev' ;
 
 $aD = "Tamerlan2" ; // variable adlari boyuk ve kicik herflere hessasdir
-   echo $ad." ".$soyad ;  //, - ile yanbayan yazdirmaq olur yeniden cagirmadan . - ilede birlesdirmek olur
+   echo $ad." ".$soyad ;  // , - ile yanbayan yazdirmaq olur yeniden cagirmadan . - ilede birlesdirmek olur
 
 ?>
