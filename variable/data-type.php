@@ -18,6 +18,9 @@
  2.Compound Data type : Array,Object,
  3.Special Data type  : Null,Resource
 
+ gettype('data type') - data tipini mueyyen edir
+
+(string ve yaxud diger data type)15 or "15" -- ise hansi data tipine cevirmek isteyiriksek cevirir
  
 
 */
