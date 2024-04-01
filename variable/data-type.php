@@ -1,5 +1,8 @@
 <?php
 /*
+
+  
+
  Data Tipleri :
  string         : metn tipinde olanlar
  int            : tam ededler
@@ -8,6 +11,15 @@
  object         : obeykt
  array          : massivler
  null           : deyeri olmayan deyer  
+
+ Əsas qruplar bunlardır : 
+
+ 1.Scalar Data type : Integer,Double(Float),String,Boolean
+ 2.Compound Data type : Array,Object,
+ 3.Special Data type  : Null,Resource
+
+ 
+
 */
 
   $name = "Tamerlan" ; //string data type
