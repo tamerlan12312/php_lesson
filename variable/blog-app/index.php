@@ -7,13 +7,33 @@
 
    #Film haqqinda
    $film1_adi = "Paper Lives" ;
-   $film1_desc = " Kağıt toplayarak geçinen ve sağlığı giderek kötüleşen Mehmet terk edilmiş bir çocuk bulur. Birden hayatına giren küçük Ali, onu kendi çocukluğuyla yüzleştirecektir. (18 yaş ve üzeri için uygundur)";
+   $film1_desc = "Kağıt toplayarak geçinen ve sağlığı giderek kötüleşen Mehmet terk edilmiş bir çocuk bulur. Birden hayatına giren küçük Ali, onu kendi çocukluğuyla yüzleştirecektir. (18 yaş ve üzeri için uygundur)";
    $film1_img = "1.jpeg" ;
 
    #Şərh
    $film1_comment = 105 ;
    $film1_like = 100 ;
    $film1_cinema = "sinemada" ; 
+  
+
+   #basqa bir variablede acmaq olar ama bele etdikde onun uzerine yazilir 
+
+   #task 1 - butun herfleri kicik 1cinin bas herfi boyuk
+
+   $film1_adi = strtolower($film1_adi) ; # ilk once butun herfleri kicik edirik
+   $film1_adi = ucfirst($film1_adi) ; # daha sonra ilk herfi boyuk edirik
+   #task 2 - 50 herfi gotur coxdursa noqteler ... qoysun
+
+   $film1_desc = substr($film1_desc,0,50)."... " ;
+   #task 3 - filmin adini a teqi yazilsin ve klik etdikde urlde filmin adi olsun
+
+
+   # $film1_url = "paper-lives" ; # bu sekilde elave etmek olur
+   $film1_url = strtolower($film1_adi) ;
+   $film1_url = str_replace([" "],["-"],$film1_url) ; # bu sekilde boslugu - ile evez eledik ve film1_urlde ise kicik herfler idi hamisi
+   
+   #task 4 - sabit ile deyer teyin et ve h1 teqine qoy
+   define("basliq","Populyar Filmler") ;
 
 ?>
 
@@ -31,7 +51,7 @@
 <body>
       <div class="container my-5">
         <div class="row">
-            <div class="col-3">
+            <div class="col-3 mt-5">
                 <ul class="list-group">
                     <li class="list-group-item"><?php echo $kategori1 ;?></li>
                     <li class="list-group-item"><?php echo $kategori2 ;?></li>
@@ -41,6 +61,9 @@
             </div>
 
             <div class="col-9">
+              <h1>
+                <?php echo basliq?>
+              </h1>
             <div class="card mb-3" >
   <div class="row g-0">
     <div class="col-md-4">
@@ -58,7 +81,7 @@
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title"><?php echo $film1_adi ;?></h5>
+        <h5 class="card-title"><?php echo "<a href=\"{$film1_url}\">$film1_adi</a>";?></h5>
         <p class="card-text"><?php echo $film1_desc ;?></p>
         <div class="d-flex ">
             <span class="badge bg-primary"><?php echo $film1_comment ;?></span>

@@ -21,7 +21,7 @@
     $pass = "Tamerlan" ;
     echo md5($pass)."<br>" ; # sözü şifrələyir - md5_file text faylini sifreleyir
     echo sha1($pass)."<br>" ; # sözü şifrələyir  sha1_file text faylini sifreleyir
-    
+    #substr metudu 3 arqument alir 1ci deyisgen 2ci hansi indeksden 3cu hansi indekse qeder kessin
     
 
 
