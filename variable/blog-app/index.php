@@ -1,6 +1,9 @@
 <?php
    $categories = ["Macera","Dram","Komedi","Korku"] ;
 
+   array_push($categories,"Fantastika") ;
+   sort($categories) ;
+
    $filmler = array(
     "1" => array(
        "title"=>"Paper Lives",
@@ -12,6 +15,28 @@
 
     )
    ) ;
+
+   # task yeni film elave ele 0-ci indexe
+
+   $yeni_film =    array(
+    "title"=>"New Movie",
+    "desc"=>"Kağıt toplayarak geçinen ve sağlığı giderek kötüleşen Mehmet terk edilmiş bir çocuk bulur. Birden hayatına giren küçük Ali, onu kendi çocukluğuyla yüzleştirecektir. (18 yaş ve üzeri için uygundur)",
+    "img" => "3.jpeg",
+    "comment" => "120",
+    "like" => "100",
+    "active" => "Hazırda",
+
+ ) ;
+
+ $filmler["0"] = $yeni_film ;
+ ksort($filmler) ;
+ shuffle($filmler) ;
+
+ print_r($filmler) ;
+
+
+
+
 
    #basqa bir variablede acmaq olar ama bele etdikde onun uzerine yazilir 
 
@@ -31,6 +56,10 @@
    
    #task 4 - sabit ile deyer teyin et ve h1 teqine qoy
    define("basliq","Populyar Filmler") ;
+   $kateqoriyaSayisi = count($categories) ;
+   $filmSayisi = count($filmler) ;
+  
+   $yekun = "{$kateqoriyaSayisi} kateqoriyadan {$filmSayisi} film var "
 
 ?>
 
@@ -54,6 +83,7 @@
                     <li class="list-group-item"><?php echo $categories[1] ;?></li>
                     <li class="list-group-item"><?php echo $categories[2] ;?></li>
                     <li class="list-group-item"><?php echo $categories[3] ;?></li>
+                    <li class="list-group-item"><?php echo $categories[4] ;?></li>
                 </ul>
             </div>
 
@@ -61,6 +91,9 @@
               <h1>
                 <?php echo basliq?>
               </h1>
+              <p>
+                <?php echo $yekun ;?>
+              </p>
             <div class="card mb-3" >
   <div class="row g-0">
     <div class="col-md-4">
