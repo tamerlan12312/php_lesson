@@ -1,35 +1,32 @@
 <?php
-   #Kategori
-   $kategori1 = "Macera";
-   $kategori2 = "Dram";
-   $kategori3 = "Komedi";
-   $kategori4 = "Korku";
+   $categories = ["Macera","Dram","Komedi","Korku"] ;
 
-   #Film haqqinda
-   $film1_adi = "Paper Lives" ;
-   $film1_desc = "Kağıt toplayarak geçinen ve sağlığı giderek kötüleşen Mehmet terk edilmiş bir çocuk bulur. Birden hayatına giren küçük Ali, onu kendi çocukluğuyla yüzleştirecektir. (18 yaş ve üzeri için uygundur)";
-   $film1_img = "1.jpeg" ;
+   $filmler = array(
+    "1" => array(
+       "title"=>"Paper Lives",
+       "desc"=>"Kağıt toplayarak geçinen ve sağlığı giderek kötüleşen Mehmet terk edilmiş bir çocuk bulur. Birden hayatına giren küçük Ali, onu kendi çocukluğuyla yüzleştirecektir. (18 yaş ve üzeri için uygundur)",
+       "img" => "3.jpeg",
+       "comment" => "120",
+       "like" => "100",
+       "active" => "Hazırda",
 
-   #Şərh
-   $film1_comment = 105 ;
-   $film1_like = 100 ;
-   $film1_cinema = "sinemada" ; 
-  
+    )
+   ) ;
 
    #basqa bir variablede acmaq olar ama bele etdikde onun uzerine yazilir 
 
    #task 1 - butun herfleri kicik 1cinin bas herfi boyuk
 
-   $film1_adi = strtolower($film1_adi) ; # ilk once butun herfleri kicik edirik
-   $film1_adi = ucfirst($film1_adi) ; # daha sonra ilk herfi boyuk edirik
+   $filmler["1"]["title"] = strtolower($filmler["1"]["title"]) ; # ilk once butun herfleri kicik edirik
+   $filmler["1"]["title"] = ucfirst($filmler["1"]["title"]) ; # daha sonra ilk herfi boyuk edirik
+
    #task 2 - 50 herfi gotur coxdursa noqteler ... qoysun
 
-   $film1_desc = substr($film1_desc,0,50)."... " ;
+   $filmler["1"]["desc"] = substr($filmler["1"]["desc"],0,50)."... " ;
    #task 3 - filmin adini a teqi yazilsin ve klik etdikde urlde filmin adi olsun
-
-
+   
    # $film1_url = "paper-lives" ; # bu sekilde elave etmek olur
-   $film1_url = strtolower($film1_adi) ;
+   $film1_url = strtolower($filmler["1"]["title"]) ;
    $film1_url = str_replace([" "],["-"],$film1_url) ; # bu sekilde boslugu - ile evez eledik ve film1_urlde ise kicik herfler idi hamisi
    
    #task 4 - sabit ile deyer teyin et ve h1 teqine qoy
@@ -53,10 +50,10 @@
         <div class="row">
             <div class="col-3 mt-5">
                 <ul class="list-group">
-                    <li class="list-group-item"><?php echo $kategori1 ;?></li>
-                    <li class="list-group-item"><?php echo $kategori2 ;?></li>
-                    <li class="list-group-item"><?php echo $kategori3 ;?></li>
-                    <li class="list-group-item"><?php echo $kategori4 ;?></li>
+                    <li class="list-group-item"><?php echo $categories[0] ;?></li>
+                    <li class="list-group-item"><?php echo $categories[1] ;?></li>
+                    <li class="list-group-item"><?php echo $categories[2] ;?></li>
+                    <li class="list-group-item"><?php echo $categories[3] ;?></li>
                 </ul>
             </div>
 
@@ -67,26 +64,16 @@
             <div class="card mb-3" >
   <div class="row g-0">
     <div class="col-md-4">
-        <!-- Asadigda escape () kimi gedir 
-      \ - ters slash ile yazilir dirnaqdan evvel yazilir bele sekil elave olunur
-      img sekil elave etmek hem bucur 
-      <?php echo "<img src=\"img/{$film1_img}\" class=\"img-fluid rounded-start\">"  ?>
-      hemde bucur etmek olar 
-       <img src="<?php echo $film1_img?>" class="img-fluid rounded-start">
-    -->
-
-    <?php echo "<img src=\"img/{$film1_img}\" class=\"img-fluid rounded-start\">"  ?>
-
-  
+    <?php echo "<img src=\"img/{$filmler["1"]["img"]}\" class=\"img-fluid rounded-start\">"  ?>
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title"><?php echo "<a href=\"{$film1_url}\">$film1_adi</a>";?></h5>
-        <p class="card-text"><?php echo $film1_desc ;?></p>
+        <h5 class="card-title"><?php echo "<a href=\"{$film1_url}\">{$filmler["1"]["title"]}</a>";?></h5>
+        <p class="card-text"><?php echo  $filmler["1"]["desc"] ;?></p>
         <div class="d-flex ">
-            <span class="badge bg-primary"><?php echo $film1_comment ;?></span>
-            <span class="badge bg-warning mx-3"><?php echo $film1_like ;?></span>
-            <span class="badge bg-danger"><?php echo $film1_cinema ;?></span>
+            <span class="badge bg-primary"><?php echo $filmler["1"]["comment"];?></span>
+            <span class="badge bg-warning mx-3"><?php echo $filmler["1"]["like"] ;?></span>
+            <span class="badge bg-danger"><?php echo $filmler["1"]["active"] ;?></span>
         </div>
       </div>
     </div>
