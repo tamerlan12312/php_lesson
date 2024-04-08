@@ -11,7 +11,7 @@
        "img" => "3.jpeg",
        "comment" => "120",
        "like" => "100",
-       "active" => "Hazırda",
+       "active" => true,
 
     )
    ) ;
@@ -29,10 +29,10 @@
  ) ;
 
  $filmler["0"] = $yeni_film ;
- ksort($filmler) ;
- shuffle($filmler) ;
+ # ksort($filmler) ;
+ # shuffle($filmler) ;
 
- print_r($filmler) ;
+ # print_r($filmler) ;
 
 
 
@@ -104,9 +104,17 @@
         <h5 class="card-title"><?php echo "<a href=\"{$film1_url}\">{$filmler["1"]["title"]}</a>";?></h5>
         <p class="card-text"><?php echo  $filmler["1"]["desc"] ;?></p>
         <div class="d-flex ">
-            <span class="badge bg-primary"><?php echo $filmler["1"]["comment"];?></span>
-            <span class="badge bg-warning mx-3"><?php echo $filmler["1"]["like"] ;?></span>
-            <span class="badge bg-danger"><?php echo $filmler["1"]["active"] ;?></span>
+            <span class="badge bg-primary">Beyenme :<?php echo $filmler["1"]["like"];?></span>
+            <span class="badge bg-warning mx-3">Yorum :<?php echo $filmler["1"]["comment"] ;?></span>
+            <span class="badge bg-danger">Var :
+            <?php 
+              if ($filmler["1"]["active"] ) {
+                echo "Hazirda" ;
+              } else {
+                echo "Hazirda yoxdur" ;
+              }
+            ?>
+            </span>
         </div>
       </div>
     </div>
