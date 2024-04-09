@@ -8,12 +8,21 @@
     "1" => array(
        "title"=>"Paper Lives",
        "desc"=>"Kağıt toplayarak geçinen ve sağlığı giderek kötüleşen Mehmet terk edilmiş bir çocuk bulur. Birden hayatına giren küçük Ali, onu kendi çocukluğuyla yüzleştirecektir. (18 yaş ve üzeri için uygundur)",
-       "img" => "3.jpeg",
-       "comment" => "120",
+       "img" => "1.jpeg",
+       "comment" => "0",
        "like" => "100",
        "active" => true,
 
-    )
+    ),
+    "2" => array(
+       "title"=>"Lucifer",
+       "desc"=>"Lorem ipsum dolor sxercitationem fugiat odit? Illum inventorm atque nihil quam iste voluptatibus incidunt mollitia odit fugiat eum omnis commodi ex molestias, sunt exercitationem tempora tempore eos odio cum?",
+       "img" => "3.jpeg",
+       "comment" => "120",
+       "like" => "100",
+       "active" => false,
+
+    ),
    ) ;
 
    # task yeni film elave ele 0-ci indexe
@@ -47,7 +56,7 @@
 
    #task 2 - 50 herfi gotur coxdursa noqteler ... qoysun
 
-   $filmler["1"]["desc"] = substr($filmler["1"]["desc"],0,50)."... " ;
+  //  $filmler["1"]["desc"] = substr($filmler["1"]["desc"],0,50)."... " ;
    #task 3 - filmin adini a teqi yazilsin ve klik etdikde urlde filmin adi olsun
    
    # $film1_url = "paper-lives" ; # bu sekilde elave etmek olur
@@ -56,6 +65,7 @@
    
    #task 4 - sabit ile deyer teyin et ve h1 teqine qoy
    define("basliq","Populyar Filmler") ;
+   define("limit","100") ;
    $kateqoriyaSayisi = count($categories) ;
    $filmSayisi = count($filmler) ;
   
@@ -102,13 +112,67 @@
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title"><?php echo "<a href=\"{$film1_url}\">{$filmler["1"]["title"]}</a>";?></h5>
-        <p class="card-text"><?php echo  $filmler["1"]["desc"] ;?></p>
+        <p class="card-text">
+          <?php
+           if (strlen($filmler["1"]["desc"]) > limit) {
+              echo substr($filmler["1"]["desc"],0,limit)."...";
+           } else {
+            echo  $filmler["1"]["desc"]  ;
+           }
+          ?>
+      
+      </p>
         <div class="d-flex ">
             <span class="badge bg-primary">Beyenme :<?php echo $filmler["1"]["like"];?></span>
-            <span class="badge bg-warning mx-3">Yorum :<?php echo $filmler["1"]["comment"] ;?></span>
+          <?php
+          if ($filmler["1"]["comment"] > 0) {
+           echo "<span class=\"badge bg-warning mx-3\">Yorum : {$filmler["1"]["comment"]} </span>" ;
+          }
+          ?>
             <span class="badge bg-danger">Var :
             <?php 
               if ($filmler["1"]["active"] ) {
+                echo "Hazirda" ;
+              } else {
+                echo "Hazirda yoxdur" ;
+              }
+            ?>
+            </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 2ci card -->
+            <div class="card mb-3" >
+  <div class="row g-0">
+    <div class="col-md-4">
+    <?php echo "<img src=\"img/{$filmler["2"]["img"]}\" class=\"img-fluid rounded-start\">"  ?>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><?php echo "<a href=\"{$film1_url}\">{$filmler["2"]["title"]}</a>";?></h5>
+        <p class="card-text">
+          <?php
+          if (strlen($filmler["2"]["desc"]) > limit) {
+            echo substr($filmler["2"]["desc"],0,limit)."...";
+          } else {
+            echo  $filmler["2"]["desc"] ;
+          } 
+          ?>  
+
+      
+      </p>
+        <div class="d-flex ">
+            <span class="badge bg-primary">Beyenme :<?php echo $filmler["1"]["like"];?></span>
+           <?php
+           if ($filmler["2"]["comment"]  > 0 ) {
+            echo "<span class=\"badge bg-warning mx-3\">Yorum :{$filmler["2"]["comment"]} </span>" ;
+           }
+           ?>
+            <span class="badge bg-danger">Var :
+            <?php 
+              if ($filmler["2"]["active"] ) {
                 echo "Hazirda" ;
               } else {
                 echo "Hazirda yoxdur" ;
