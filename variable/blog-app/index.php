@@ -123,7 +123,7 @@
       
       </p>
         <div class="d-flex ">
-            <span class="badge bg-primary">Beyenme :<?php echo $filmler["1"]["like"];?></span>
+            <span class="badge bg-primary me-3">Beyenme :<?php echo $filmler["1"]["like"];?></span>
           <?php
           if ($filmler["1"]["comment"] > 0) {
            echo "<span class=\"badge bg-warning mx-3\">Yorum : {$filmler["1"]["comment"]} </span>" ;
