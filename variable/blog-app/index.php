@@ -1,5 +1,5 @@
 <?php
-   $categories = ["Macera","Dram","Komedi","Korku"] ;
+   $categories = ["Macera","Dram","Komedi","Korku","Gerilim","Adrenalin"] ;
 
    array_push($categories,"Fantastika") ;
    sort($categories) ;
@@ -23,12 +23,21 @@
        "active" => false,
 
     ),
+    "3" => array(
+       "title"=>"Lucifer",
+       "desc"=>"Lorem ipsum dolor sxercitationem fugiat odit? Illum inventorm atque nihil quam iste voluptatibus incidunt mollitia odit fugiat eum omnis commodi ex molestias, sunt exercitationem tempora tempore eos odio cum?",
+       "img" => "2.jpeg",
+       "comment" => "120",
+       "like" => "100",
+       "active" => false,
+
+    ),
    ) ;
 
    # task yeni film elave ele 0-ci indexe
 
    $yeni_film =    array(
-    "title"=>"New Movie",
+    "title"=>"New Movie Array",
     "desc"=>"Kağıt toplayarak geçinen ve sağlığı giderek kötüleşen Mehmet terk edilmiş bir çocuk bulur. Birden hayatına giren küçük Ali, onu kendi çocukluğuyla yüzleştirecektir. (18 yaş ve üzeri için uygundur)",
     "img" => "3.jpeg",
     "comment" => "120",
@@ -38,11 +47,15 @@
  ) ;
 
  $filmler["0"] = $yeni_film ;
- # ksort($filmler) ;
+ ksort($filmler) ;
  # shuffle($filmler) ;
 
  # print_r($filmler) ;
 
+ foreach ($filmler as $key => $value) {
+  $filmler[$key]["url"] = strtolower($filmler[$key]["title"]) ;
+  $filmler[$key]["url"] = str_replace(" ","-",$filmler[$key]["url"]) ;
+ }
 
 
 
@@ -51,8 +64,8 @@
 
    #task 1 - butun herfleri kicik 1cinin bas herfi boyuk
 
-   $filmler["1"]["title"] = strtolower($filmler["1"]["title"]) ; # ilk once butun herfleri kicik edirik
-   $filmler["1"]["title"] = ucfirst($filmler["1"]["title"]) ; # daha sonra ilk herfi boyuk edirik
+  # $filmler["1"]["url"] = strtolower($filmler["1"]["title"]) ; # ilk once butun herfleri kicik edirik
+  # $filmler["1"]["url"] = str_replace(" ","-",$filmler["1"]["url"]) ; # daha sonra ilk herfi boyuk edirik
 
    #task 2 - 50 herfi gotur coxdursa noqteler ... qoysun
 
@@ -60,8 +73,8 @@
    #task 3 - filmin adini a teqi yazilsin ve klik etdikde urlde filmin adi olsun
    
    # $film1_url = "paper-lives" ; # bu sekilde elave etmek olur
-   $film1_url = strtolower($filmler["1"]["title"]) ;
-   $film1_url = str_replace([" "],["-"],$film1_url) ; # bu sekilde boslugu - ile evez eledik ve film1_urlde ise kicik herfler idi hamisi
+  # $film1_url = strtolower($filmler["1"]["title"]) ;
+   #$film1_url = str_replace([" "],["-"],$film1_url) ; # bu sekilde boslugu - ile evez eledik ve film1_urlde ise kicik herfler idi hamisi
    
    #task 4 - sabit ile deyer teyin et ve h1 teqine qoy
    define("basliq","Populyar Filmler") ;
@@ -89,11 +102,11 @@
         <div class="row">
             <div class="col-3 mt-5">
                 <ul class="list-group">
-                    <li class="list-group-item"><?php echo $categories[0] ;?></li>
-                    <li class="list-group-item"><?php echo $categories[1] ;?></li>
-                    <li class="list-group-item"><?php echo $categories[2] ;?></li>
-                    <li class="list-group-item"><?php echo $categories[3] ;?></li>
-                    <li class="list-group-item"><?php echo $categories[4] ;?></li>
+                  <?php
+                  foreach ($categories as $category) {
+                    echo '<li class="list-group-item">'.$category.'</li>' ;
+                  }
+                  ?>
                 </ul>
             </div>
 
@@ -104,86 +117,68 @@
               <p>
                 <?php echo $yekun ;?>
               </p>
-            <div class="card mb-3" >
-  <div class="row g-0">
-    <div class="col-md-4">
-    <?php echo "<img src=\"img/{$filmler["1"]["img"]}\" class=\"img-fluid rounded-start\">"  ?>
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title"><?php echo "<a href=\"{$film1_url}\">{$filmler["1"]["title"]}</a>";?></h5>
-        <p class="card-text">
-          <?php
-           if (strlen($filmler["1"]["desc"]) > limit) {
-              echo substr($filmler["1"]["desc"],0,limit)."...";
-           } else {
-            echo  $filmler["1"]["desc"]  ;
-           }
-          ?>
-      
-      </p>
-        <div class="d-flex ">
-            <span class="badge bg-primary me-3">Beyenme :<?php echo $filmler["1"]["like"];?></span>
-          <?php
-          if ($filmler["1"]["comment"] > 0) {
-           echo "<span class=\"badge bg-warning mx-3\">Yorum : {$filmler["1"]["comment"]} </span>" ;
-          }
-          ?>
-            <span class="badge bg-danger">Var :
-            <?php 
-              if ($filmler["1"]["active"] ) {
-                echo "Hazirda" ;
-              } else {
-                echo "Hazirda yoxdur" ;
-              }
-            ?>
-            </span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- 2ci card -->
-            <div class="card mb-3" >
-  <div class="row g-0">
-    <div class="col-md-4">
-    <?php echo "<img src=\"img/{$filmler["2"]["img"]}\" class=\"img-fluid rounded-start\">"  ?>
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title"><?php echo "<a href=\"{$film1_url}\">{$filmler["2"]["title"]}</a>";?></h5>
-        <p class="card-text">
-          <?php
-          if (strlen($filmler["2"]["desc"]) > limit) {
-            echo substr($filmler["2"]["desc"],0,limit)."...";
-          } else {
-            echo  $filmler["2"]["desc"] ;
-          } 
-          ?>  
+      <?php
 
+         foreach ($filmler as $id => $film) {
+    
+       echo '<div class="card mb-3" >
+             <div class="row g-0">
+               <div class="col-md-4">
+
+              <img src="img/'.$film["img"].'" class="img-fluid rounded-start"> 
+               
+              </div>
+               <div class="col-md-8">
+                 <div class="card-body">
+
+                   <h5 class="card-title"><a href="'.$film["url"].'">'.$film["title"].'</a></h5>
+                  
+                   <p class="card-text">';
+
+  
+                      if (strlen($film["desc"]) > limit) {
+                         echo substr($film["desc"],0,limit)."...";
+                      } else {
+                       echo  $filmler["1"]["desc"]  ;
+                      }
+                 
+                 
+                echo  '</p>';
+
+
+              echo   '<div class="d-flex ">
+                       <span class="badge bg-primary me-3">Beyenme : '.$film["like"].'</span';
+
+
+                  
+                     if ($film["comment"] > 0) {
+                      echo "<span class=\"badge bg-warning mx-3\">Yorum : {$film["comment"]} </span>" ;
+                     }
+                     
+                 echo      '<span class="badge bg-danger">Var :';
+
+                       
+                    
+                         if ($film["active"] ) {
+                           echo "Hazirda" ;
+                         } else {
+                           echo "Hazirda yoxdur" ;
+                         }
+                       
+
+
+                    echo   '</span>
+                   </div> 
+
+
+                 </div>
+               </div>
+             </div>
+           </div>' ;
       
-      </p>
-        <div class="d-flex ">
-            <span class="badge bg-primary">Beyenme :<?php echo $filmler["1"]["like"];?></span>
-           <?php
-           if ($filmler["2"]["comment"]  > 0 ) {
-            echo "<span class=\"badge bg-warning mx-3\">Yorum :{$filmler["2"]["comment"]} </span>" ;
-           }
-           ?>
-            <span class="badge bg-danger">Var :
-            <?php 
-              if ($filmler["2"]["active"] ) {
-                echo "Hazirda" ;
-              } else {
-                echo "Hazirda yoxdur" ;
-              }
-            ?>
-            </span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+          }
+      ?>
+
             </div>
         </div>
       </div>

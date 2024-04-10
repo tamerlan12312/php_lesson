@@ -26,3 +26,67 @@
 
 
 ?>
+
+
+
+
+
+<?php
+
+foreach ($filmler as $id => $film) {
+
+
+
+
+echo   '<div class="card mb-3" >
+    <div class="row g-0">
+      <div class="col-md-4">
+     <img src="img/'.$film["img"].'" class="img-fluid rounded-start"> 
+      
+     </div>
+      <div class="col-md-8">
+        <div class="card-body">
+
+          <h5 class="card-title"><a href="'.$film1_url.'">'.$film["title"].'</a></h5>
+         
+          <p class="card-text">';
+
+
+           
+          
+             if (strlen($film["desc"]) > limit) {
+                echo substr($film["desc"],0,limit)."...";
+             } else {
+              echo  $film["desc"]  ;
+             } ;
+        
+        
+       echo '</p><div class="d-flex "> ' ;                  
+            if ($film["comment"] > 0) {
+             echo '<span class="badge bg-warning mx-3">Yorum :'.$film["comment"].'</span>' ;
+            }
+
+           echo  '<span class="badge bg-primary me-3">Beyenme :'.$film["like"].'</span> ' ;
+
+
+           echo '<span class="badge bg-danger">Var' ;
+
+              
+           
+                if ($film["active"] ) {
+                  echo "Hazirda" ;
+                } else {
+                  echo "Hazirda yoxdur" ;
+                }
+              
+
+
+            echo '</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>' ;
+
+ }
+?>
