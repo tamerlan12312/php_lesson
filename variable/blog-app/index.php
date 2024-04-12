@@ -1,92 +1,77 @@
 <?php
-   $categories = ["Macera","Dram","Komedi","Korku","Gerilim","Adrenalin"] ;
 
-   array_push($categories,"Fantastika") ;
-   sort($categories) ;
+    $kategoriler = array("Macera","Dram","Komedi","Korku","Bilim Kurgu");
 
-   $filmler = array(
-    "1" => array(
-       "title"=>"Paper Lives",
-       "desc"=>"Kağıt toplayarak geçinen ve sağlığı giderek kötüleşen Mehmet terk edilmiş bir çocuk bulur. Birden hayatına giren küçük Ali, onu kendi çocukluğuyla yüzleştirecektir. (18 yaş ve üzeri için uygundur)",
-       "img" => "1.jpeg",
-       "comment" => "0",
-       "like" => "100",
-       "active" => true,
+    $filmler = array( 
+        "1"=> array(
+            "baslik" => "Paper Lives",
+            "aciklama" => "Kağıt toplayarak geçinen ve sağlığı giderek kötüleşen Mehmet terk edilmiş bir çocuk bulur. Birden hayatına giren küçük Ali, onu kendi çocukluğuyla yüzleştirecektir. (18 yaş ve üzeri için uygundur)",
+            "resim" => "1.jpeg",
+            "yorumSayisi" => "0",
+            "begeniSayisi" => "106",
+            "vizyon" => true
+        ),
+        "2"=> array(
+            "baslik" => "Walking Dead",
+            "aciklama" => "Zombi kıyametinin ardından hayatta kalanlar, birlikte verdikleri ölüm kalım mücadelesinde insanlığa karşı duydukları umuda tutunur.",
+            "resim" => "2.jpeg",
+            "yorumSayisi" => "236",
+            "begeniSayisi" => "305",
+            "vizyon" => false
+        )
+        ,
+        "3"=> array(
+            "baslik" => "yeni film 1",
+            "aciklama" => "Zombi kıyametinin ardından hayatta kalanlar, birlikte verdikleri ölüm kalım mücadelesinde insanlığa karşı duydukları umuda tutunur.",
+            "resim" => "3.jpeg",
+            "yorumSayisi" => "236",
+            "begeniSayisi" => "305",
+            "vizyon" => false
+        )
+        ,
+        "4"=> array(
+            "baslik" => "yeni film 2",
+            "aciklama" => "Zombi kıyametinin ardından hayatta kalanlar, birlikte verdikleri ölüm kalım mücadelesinde insanlığa karşı duydukları umuda tutunur.",
+            "resim" => "1.jpeg",
+            "yorumSayisi" => "236",
+            "begeniSayisi" => "305",
+            "vizyon" => false
+        )
+    );    
 
-    ),
-    "2" => array(
-       "title"=>"Lucifer",
-       "desc"=>"Lorem ipsum dolor sxercitationem fugiat odit? Illum inventorm atque nihil quam iste voluptatibus incidunt mollitia odit fugiat eum omnis commodi ex molestias, sunt exercitationem tempora tempore eos odio cum?",
-       "img" => "3.jpeg",
-       "comment" => "120",
-       "like" => "100",
-       "active" => false,
+     function filmArtir (&$filmler,string $baslik, string $aciklama, string $resim, int $yorumSayisi = 0, int $begeniSayisi = 0, bool $vizyon = false){
+           
+      $yeni_film[count($filmler) + 1]=array (
+        "baslik" => $baslik,
+        "aciklama" => $aciklama,
+        "resim" => $resim,
+        "yorumSayisi" => $yorumSayisi,
+        "begeniSayisi" => $begeniSayisi,
+        "vizyon" => $vizyon
+      );
 
-    ),
-    "3" => array(
-       "title"=>"Lucifer",
-       "desc"=>"Lorem ipsum dolor sxercitationem fugiat odit? Illum inventorm atque nihil quam iste voluptatibus incidunt mollitia odit fugiat eum omnis commodi ex molestias, sunt exercitationem tempora tempore eos odio cum?",
-       "img" => "2.jpeg",
-       "comment" => "120",
-       "like" => "100",
-       "active" => false,
+      $filmler = array_merge($filmler,$yeni_film) ;
 
-    ),
-   ) ;
+      foreach ($filmler as $key => $film) {
+        $filmler[$key]["url"] = strtolower($filmler[$key]["baslik"]);
+        $filmler[$key]["url"] = str_replace([" ","ç"],["-","c"],$filmler[$key]["url"]);
+    }
+     }
 
-   # task yeni film elave ele 0-ci indexe
+    filmArtir($filmler,"Yeni Film 3","yeni description","3.jpeg") ;
 
-   $yeni_film =    array(
-    "title"=>"New Movie Array",
-    "desc"=>"Kağıt toplayarak geçinen ve sağlığı giderek kötüleşen Mehmet terk edilmiş bir çocuk bulur. Birden hayatına giren küçük Ali, onu kendi çocukluğuyla yüzleştirecektir. (18 yaş ve üzeri için uygundur)",
-    "img" => "3.jpeg",
-    "comment" => "120",
-    "like" => "100",
-    "active" => "Hazırda",
+    function qisaDesc ($desc,$limit){
+      if (strlen($desc) > $limit) {
+        echo substr($desc,0,$limit)."...";
+    } else {
+        echo $desc;
+    };
+    }
 
- ) ;
-
- $filmler["0"] = $yeni_film ;
- ksort($filmler) ;
- # shuffle($filmler) ;
-
- # print_r($filmler) ;
-
- foreach ($filmler as $key => $value) {
-  $filmler[$key]["url"] = strtolower($filmler[$key]["title"]) ;
-  $filmler[$key]["url"] = str_replace(" ","-",$filmler[$key]["url"]) ;
- }
-
-
-
-
-   #basqa bir variablede acmaq olar ama bele etdikde onun uzerine yazilir 
-
-   #task 1 - butun herfleri kicik 1cinin bas herfi boyuk
-
-  # $filmler["1"]["url"] = strtolower($filmler["1"]["title"]) ; # ilk once butun herfleri kicik edirik
-  # $filmler["1"]["url"] = str_replace(" ","-",$filmler["1"]["url"]) ; # daha sonra ilk herfi boyuk edirik
-
-   #task 2 - 50 herfi gotur coxdursa noqteler ... qoysun
-
-  //  $filmler["1"]["desc"] = substr($filmler["1"]["desc"],0,50)."... " ;
-   #task 3 - filmin adini a teqi yazilsin ve klik etdikde urlde filmin adi olsun
-   
-   # $film1_url = "paper-lives" ; # bu sekilde elave etmek olur
-  # $film1_url = strtolower($filmler["1"]["title"]) ;
-   #$film1_url = str_replace([" "],["-"],$film1_url) ; # bu sekilde boslugu - ile evez eledik ve film1_urlde ise kicik herfler idi hamisi
-   
-   #task 4 - sabit ile deyer teyin et ve h1 teqine qoy
-   define("basliq","Populyar Filmler") ;
-   define("limit","100") ;
-   $kateqoriyaSayisi = count($categories) ;
-   $filmSayisi = count($filmler) ;
-  
-   $yekun = "{$kateqoriyaSayisi} kateqoriyadan {$filmSayisi} film var "
+    const baslik = "Popüler Filmler";
+    $ozet = count($kategoriler) .' kategoride '.count($filmler). ' film listelenmiştir';
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -94,93 +79,82 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Blog App</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-      <div class="container my-5">
+    
+    <div class="container my-5">
+    
         <div class="row">
-            <div class="col-3 mt-5">
+
+            <div class="col-3">
                 <ul class="list-group">
-                  <?php
-                  foreach ($categories as $category) {
-                    echo '<li class="list-group-item">'.$category.'</li>' ;
-                  }
-                  ?>
+                    <?php
+                        foreach($kategoriler as $kategori) {
+                            echo '<li class="list-group-item">'.$kategori.'</li>';
+                        };
+                    ?>                   
                 </ul>
             </div>
-
             <div class="col-9">
-              <h1>
-                <?php echo basliq?>
-              </h1>
-              <p>
-                <?php echo $yekun ;?>
-              </p>
-      <?php
+                <h1 class="mb-4"><?php echo baslik?></h1>
+                <p class="text-muted">
+                    <?php echo $ozet?>
+                </p>
 
-         foreach ($filmler as $id => $film) {
-    
-       echo '<div class="card mb-3" >
-             <div class="row g-0">
-               <div class="col-md-4">
+                <?php     
 
-              <img src="img/'.$film["img"].'" class="img-fluid rounded-start"> 
-               
-              </div>
-               <div class="col-md-8">
-                 <div class="card-body">
+                    foreach($filmler as $id => $film) {
 
-                   <h5 class="card-title"><a href="'.$film["url"].'">'.$film["title"].'</a></h5>
-                  
-                   <p class="card-text">';
+                        echo  '<div class="card mb-3">
+                            <div class="row">
+                                <div class="col-3">
+                                    <img class="img-fluid" src="img/'.$film["resim"].'">                          
+                                </div>
+                                <div class="col-9">
+                                    <div class="card-body">                        
+                                        <h5 class="card-title"><a href="'.$film["url"].'">'.$film["baslik"].'</a></h5>
+                                        <p class="card-text">';
+                                            
+                                         echo qisaDesc($film["aciklama"],200) ;
 
-  
-                      if (strlen($film["desc"]) > limit) {
-                         echo substr($film["desc"],0,limit)."...";
-                      } else {
-                       echo  $filmler["1"]["desc"]  ;
-                      }
-                 
-                 
-                echo  '</p>';
+                                        echo '</p><div>';
 
+                                            if ($film["yorumSayisi"] > 0) {
+                                                echo '<span class="badge bg-primary me-1">'.$film["yorumSayisi"].' yorum</span>';
+                                            };
 
-              echo   '<div class="d-flex ">
-                       <span class="badge bg-primary me-3">Beyenme : '.$film["like"].'</span';
+                                            echo '<span class="badge bg-primary me-1">'.$film["begeniSayisi"].' beğeni</span>';
 
+                                            echo '<span class="badge bg-warning me-1">';
+                                               
+                                            if ($film["vizyon"]) {
+                                                echo "vizyonda";
+                                            } else {
+                                                echo "vizyonda değil";
+                                            };
 
-                  
-                     if ($film["comment"] > 0) {
-                      echo "<span class=\"badge bg-warning mx-3\">Yorum : {$film["comment"]} </span>" ;
-                     }
-                     
-                 echo      '<span class="badge bg-danger">Var :';
+                                        echo '</span>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                            </div>
+                        </div>';
 
-                       
-                    
-                         if ($film["active"] ) {
-                           echo "Hazirda" ;
-                         } else {
-                           echo "Hazirda yoxdur" ;
-                         }
-                       
-
-
-                    echo   '</span>
-                   </div> 
-
-
-                 </div>
-               </div>
-             </div>
-           </div>' ;
-      
-          }
-      ?>
+                    }                                 
+                
+                ?>
 
             </div>
+        
+        
         </div>
-      </div>
+    
+    </div>
+
+
+
 </body>
 </html>
