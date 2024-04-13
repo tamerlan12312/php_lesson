@@ -1,1 +1,6 @@
-<p>Burasi Footerdir</p>
+ 
+    <div id="footer">
+        Footer
+    </div>
+</body>
+</html>
