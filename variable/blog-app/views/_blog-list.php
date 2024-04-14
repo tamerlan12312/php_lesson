@@ -47,4 +47,8 @@
 
                 <?php endforeach ; ?>
 
+                <h4 class="text-center">
+                <?php echo $notfound ;?>
+                </h4>
+
             </div>
