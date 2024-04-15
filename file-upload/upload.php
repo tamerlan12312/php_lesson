@@ -1,14 +1,25 @@
 <?php
   
   if (isset($_POST["btnUpload"]) and $_POST["btnUpload"] == "Göndər") {
+
+    # faylin olcusu 
+    # faylin adi eyni olduqda random ad qoymaq
+    # faylin tipi jpg yaxud png ve.s
+
+
     
     $fileToUpload = $_FILES["fileToUpload"] ;
     $file_name = $_FILES["fileToUpload"]["name"] ;
     $file_tmp_name = $_FILES["fileToUpload"]["tmp_name"] ;
     $files="./files/" ;
 
+    # fayl secilib secilmediyi
+    if (empty($file_name)) {
+        echo "fayli secin" ;
+    }
+
     if (move_uploaded_file($file_tmp_name,$files.$file_name)) {
-        echo "fayl yuklendir" ;
+        echo "fayl yuklendi" ;
     } else {
         echo "fayl yuklenmedi" ;
     }
