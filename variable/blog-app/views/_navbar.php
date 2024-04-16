@@ -31,7 +31,23 @@
           <a class="nav-link" href="#">Link</a>
         </li>
       </ul>
-
+      <ul class="navbar-nav  mb-2 mb-lg-0">
+      <?php  if(isset($_COOKIE["auth"])) : ?>
+        <li class="nav-item">
+          <a class="nav-link" href="logout.php">Log out</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Welcome, <?php echo $_COOKIE["auth"]["name"] ;?></a>
+        </li>
+      <?php else :?>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="login.php">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Register</a>
+        </li>
+      <?php endif ;?>
+      </ul>
       <form class="d-flex" role="search" action="index.php" method="GET">
         <input class="form-control me-2" name="q" type="search"  placeholder="Search" aria-label="Search">
         <button class="btn btn-danger" type="submit">Search</button>

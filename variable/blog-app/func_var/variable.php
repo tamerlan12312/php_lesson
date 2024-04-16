@@ -1,4 +1,15 @@
 <?php
+  
+  const user = array (
+    "username" => "Tamerlan",
+    "password" => "123",
+    "name"     => "Tamerlan Farajullayev"
+  ) ;
+
+  const baslik = "Popüler Filmler";
+  # const username = "Tamerlan" ;
+  # const password = "tamerlan12312";
+
   $kategoriler = array("Macera","Dram","Komedi","Korku","Bilim Kurgu");
 
   $filmler = array( 
@@ -42,6 +53,6 @@
       )
   ); 
   
-  const baslik = "Popüler Filmler";
+
 
 ?>

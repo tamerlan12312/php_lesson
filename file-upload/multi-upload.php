@@ -16,16 +16,8 @@
         } else {
             echo "Fayllar yuklenmedi" ;
         }
-
-
     }
-
-
-
   }
- 
-
-
 ?>
 
 
