@@ -1,7 +1,7 @@
 <?php
- function filmArtir (&$filmler,string $baslik, string $aciklama, string $resim, int $yorumSayisi = 0, int $begeniSayisi = 0, bool $vizyon = false){
+ function filmArtir (string $baslik, string $aciklama, string $resim, int $yorumSayisi = 0, int $begeniSayisi = 0, bool $vizyon = false){
            
-    $yeni_film[count($filmler) + 1]=array (
+    $yeni_film[count($_SESSION["filmler"]) + 1]=array (
       "baslik" => $baslik,
       "aciklama" => $aciklama,
       "resim" => $resim,
@@ -11,10 +11,10 @@
       "url"=>"yeni-film-3"
     );
 
-    $filmler = array_merge($filmler,$yeni_film) ;
+    $_SESSION["filmler"] = array_merge($_SESSION["filmler"],$yeni_film) ;
    }
 
-  filmArtir($filmler,"Yeni Film 3","yeni description","3.jpeg") ;
+  // filmArtir("Yeni Film 3","yeni description","3.jpeg") ;
 
   function qisaDesc ($desc,$limit){
     if (strlen($desc) > $limit) {

@@ -1,6 +1,20 @@
 <?php
     require "func_var/variable.php" ;    # variable
     include "func_var/functions.php" ;   # funksiyalar
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $title = $_POST["basliq"];
+        $desc = $_POST["aciklama"];
+        $img = $_POST["resim"];
+        
+        echo $title ;
+        echo $desc ;
+        echo $img ;
+        filmArtir($title,$desc,$img) ;
+        header ("Location: index.php") ;
+    }
+
+
 ?>
 <?php require "views/_header.php" ;?>
 <?php require "views/_navbar.php" ;?>
@@ -9,7 +23,7 @@
           <?php include "views/_menu.php" ;?>
 
             <div class="col-9">
-            <form action="index.php" method="POST">
+            <form action="create.php" method="POST">
                 <label for="">Basliq :</label>
                 <input type="text" class="w-100" name="basliq">
                 <br>

@@ -4,7 +4,7 @@
                     <?php echo $ozet?>
                 </p>
 
-                <?php foreach($filmler as $id => $film) : ?>
+                <?php foreach($_SESSION["filmler"] as $id => $film) : ?>
 
                         <div class="card mb-3">
                             <div class="row">

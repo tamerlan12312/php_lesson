@@ -12,7 +12,7 @@ session_start() ; # session bele basladilir oz ozle basladilmir
 
  # session_unset() ; # sessionda olan butun melumatlari silecekdir
 
- # session_destroy();  # umumi sesionsu siler 1 muddet sonra silecekdir
+ # session_destroy();  # umumi sessionu siler 1 muddet sonra silecekdir
 
  # $_SESSION = [] ; # bu ise eyni anda silir gozlemir
 

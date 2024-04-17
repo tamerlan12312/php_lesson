@@ -1,5 +1,6 @@
 <?php
-  
+  session_start() ;
+
   const user = array (
     "username" => "Tamerlan",
     "password" => "123",
@@ -53,6 +54,12 @@
       )
   ); 
   
+  if (isset($_SESSION["filmler"]) and count($_SESSION["filmler"]) > count($filmler)) { # eger sesion boyukdurse elave olunsun
+       $filmler = $_SESSION["filmler"] ; # eger varsa sessiondan gelenler elave olunsun filmler massivine
+  } else {
+      $_SESSION["filmler"] = $filmler ; #eger session yoxdursa evelki filmler massivi gorsensin
+      echo "SESIONSDAN GELEN DATADIR" ;
+  }
 
 
 ?>
