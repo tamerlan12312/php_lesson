@@ -1,17 +1,9 @@
 <?php
- function filmArtir (string $baslik, string $aciklama, string $resim, int $yorumSayisi = 0, int $begeniSayisi = 0, bool $vizyon = false){
-           
-    $yeni_film[count($_SESSION["filmler"]) + 1]=array (
-      "baslik" => $baslik,
-      "aciklama" => $aciklama,
-      "resim" => $resim,
-      "yorumSayisi" => $yorumSayisi,
-      "begeniSayisi" => $begeniSayisi,
-      "vizyon" => $vizyon,
-      "url"=>"yeni-film-3"
-    );
-
-    $_SESSION["filmler"] = array_merge($_SESSION["filmler"],$yeni_film) ;
+ function filmArtir (string $baslik, string $aciklama, string $resim, string $url, int $yorumSayisi = 0, int $begeniSayisi = 0, bool $vizyon = false){
+            $my_file  = fopen("data.txt","a") ;
+            $items = $baslik."|".$aciklama."|".$resim."|".$url."|".$yorumSayisi."|".$begeniSayisi."|".(int)$vizyon;
+            fwrite($my_file,$items."\n");
+            fclose($my_file) ;
    }
 
   // filmArtir("Yeni Film 3","yeni description","3.jpeg") ;

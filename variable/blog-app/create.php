@@ -6,11 +6,12 @@
         $title = $_POST["basliq"];
         $desc = $_POST["aciklama"];
         $img = $_POST["resim"];
+        $url = $_POST["url"];
         
         echo $title ;
         echo $desc ;
         echo $img ;
-        filmArtir($title,$desc,$img) ;
+        filmArtir($title,$desc,$img,$url) ;
         header ("Location: index.php") ;
     }
 
@@ -30,6 +31,10 @@
                 <div class="mt-3">
                 <label for="">Aciklama :</label>
                 <input type="text" class="w-100" name="aciklama">
+                </div>
+                <div class="mt-3">
+                <label for="">Url :</label>
+                <input type="text" class="w-100" name="url">
                 </div>
                 <br>
                 <label for="">Resim :</label>

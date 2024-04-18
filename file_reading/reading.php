@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 # file acmaq fopen("faylin yolu","fayli acmaq modu")
 # r - Fayli oxumaq modunda acir.Kursor en basindan baslayir
 
@@ -32,5 +32,38 @@ while (!feof($my_file)) { # feof donguye salir fayli ve sonuncuya qeder gosterir
 }
 
 fclose($my_file) ; # burada streami baglayiriq 
+
+?> -->
+
+
+<?php
+   
+  $new_file = fopen("yeni_file2.txt","a+") ;
+  $new_str = "New Text last\n" ;
+  fwrite($new_file,$new_str) ;
+ # fwrite($new_file,$new_str) ;
+
+
+  $my_file = fopen("yeni_file2.txt","r") ;
+
+ fseek($new_file,0);
+
+  while (!feof($my_file)) {
+      echo fgets($my_file)."<br>" ;
+  }
+
+
+fclose($my_file) ;
+
+//  $my_file = fopen("file.txt","r") ;
+//  $file_size = filesize("file.txt") ;
+//  echo fread($my_file,$file_size) ;
+
+//  while(!feof($my_file)) {
+//         echo fgets($my_file)."<br>" ;
+//  }
+
+// fclose($my_file) ;
+
 
 ?>
