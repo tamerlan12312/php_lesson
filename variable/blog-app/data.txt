@@ -1,2 +1,2 @@
-est|test|1.jpeg|tes|0|0|0
-last data title|last data desc|3.jpeg|last-data-url|0|0|0
+Paper Lives|Paper Lives Description|1.jpeg|paper-lives|0|0|0
+Lucifer|Lucifer Description|3.jpeg|lucifer-url|0|0|0

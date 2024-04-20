@@ -32,14 +32,16 @@
                 <label for="">Aciklama :</label>
                 <input type="text" class="w-100" name="aciklama">
                 </div>
+
+                <label for="">Resim :</label>
+                <input type="text" class="w-100" name="resim">
                 <div class="mt-3">
                 <label for="">Url :</label>
                 <input type="text" class="w-100" name="url">
                 </div>
                 <br>
-                <label for="">Resim :</label>
-                <input type="text" class="w-100" name="resim">
                 <input type="submit" class="mt-4" value="Gonder">
+                
                </form>
             </div>
 

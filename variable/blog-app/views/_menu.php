@@ -1,5 +1,5 @@
 <?php
-$ozet = count($kategoriler) .' kategoride '.count($_SESSION["filmler"]). ' film listelenmiştir';
+$ozet = count($kategoriler) .' kategoride '.count(filmleriGetir()). ' film listelenmiştir';
 ?>
        
        <div class="col-3">

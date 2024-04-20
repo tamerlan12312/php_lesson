@@ -4,7 +4,7 @@
                     <?php echo $ozet?>
                 </p>
 
-                <?php foreach($_SESSION["filmler"] as $id => $film) : ?>
+                <?php foreach( filmleriGetir() as $id => $film) : ?>
 
                         <div class="card mb-3">
                             <div class="row">
@@ -28,13 +28,13 @@
                                             <span class="badge bg-primary me-1"><?php echo$film["begeniSayisi"];  ?> beğeni</span>
 
                                             <span class="badge bg-warning me-1">
-                                                <?php if($film["vizyon"]) :?>
+                                                <?php if($film["vizyon"] != 0) :?>
                                                 <span>
-                                                 vizyonda
+                                                vizyonda Deyil
                                                 </span> 
                                           <?php else :?>
                                                 <span>
-                                                 vizyonda Deyil
+                                                 vizyonda 
                                                 </span> 
                                          <?php endif ;?>
                                        </span>

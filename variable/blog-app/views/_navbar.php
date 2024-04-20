@@ -10,7 +10,7 @@
     }) ;
    } 
 
-   if (count($filmler) == 0) {
+   if (count(filmleriGetir()) == 0) {
     $notfound = "melumat tapilmadi" ;
    }
 

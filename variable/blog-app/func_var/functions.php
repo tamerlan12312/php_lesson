@@ -7,6 +7,31 @@
    }
 
   // filmArtir("Yeni Film 3","yeni description","3.jpeg") ;
+   
+  function filmleriGetir() {
+     $myfile = fopen("data.txt","r") ;
+     $list_arr = [] ;
+
+     while(($item = fgets(($myfile))) !== false){
+        $exploded_item = explode("|",$item) ; # her itemi ayirdi ve massiv qaytardi index[0] data.txtdeki siraya gore gedir
+        array_push($list_arr,array(
+           "baslik"=>$exploded_item[0],
+           "aciklama"=>$exploded_item[1],
+           "resim"=>$exploded_item[2],
+           "url"=>$exploded_item[3],
+           "yorumSayisi"=>$exploded_item[4],
+           "begeniSayisi"=>$exploded_item[5],
+           "vizyon"=>$exploded_item[6],
+        )) ;
+
+     }
+
+     fclose($myfile);
+     return $list_arr ;
+
+  }
+
+
 
   function qisaDesc ($desc,$limit){
     if (strlen($desc) > $limit) {

@@ -1,0 +1,15 @@
+{
+    "firstName" : "Tamerlan",
+    "lastName" : "Farajullayev",
+    "hobbies" : [
+        "sport","music"
+    ] ,
+    "age" : 25 ,
+    "children" : [
+        {
+            "firstName":"Tamer",
+            "age":4
+        }
+    ]
+
+}
