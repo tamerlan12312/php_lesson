@@ -1,4 +1,17 @@
 <?php
+
+ function getData(){
+   $myfile = fopen("db.json","r") ;
+   $size   = filesize("db.json") ;
+   $result = json_decode(fread($myfile,$size),true) ; # bu bize db.json datasini massiv seklinde getirecekdir
+   fclose($myfile) ;
+   # return $result["categories"] ; # bunu bele cagirsaq db.jsondaki kateqoriyalar gelecekdir
+   # ondansa funksiyai cagirib getData()["categories"] daya uygundur butun datalar bu funksiyada olacaqdir
+   return $result ; 
+}
+ 
+
+
  function filmArtir (string $baslik, string $aciklama, string $resim, string $url, int $yorumSayisi = 0, int $begeniSayisi = 0, bool $vizyon = false){
             $my_file  = fopen("data.txt","a") ;
             $items = $baslik."|".$aciklama."|".$resim."|".$url."|".$yorumSayisi."|".$begeniSayisi."|".(int)$vizyon;

@@ -1,0 +1,10 @@
+{
+    "users" :[],
+    "movies":[],
+    "categories":[
+        {"id":1,"name":"Macera"},
+        {"id":2,"name":"Dram"},
+        {"id":3,"name":"Komedi"},
+        {"id":4,"name":"Korku"}
+    ]
+}
