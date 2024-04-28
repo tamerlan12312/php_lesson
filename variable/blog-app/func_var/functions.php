@@ -9,14 +9,48 @@
    # ondansa funksiyai cagirib getData()["categories"] daya uygundur butun datalar bu funksiyada olacaqdir
    return $result ; 
 }
+
+function createUser(string $name,string $email,string $username,string $password){
+     $db = getData() ;
+     array_push($db["users"],array(
+      "id"=>count($db["users"]) + 1, # id her defe artacaqdir 4 5 6
+      "name"=>$name,
+      "username"=>$username,
+      "password"=>$password,
+      "email"=>$email
+     )) ;
+     $my_open_file  = fopen("db.json","w");
+     fwrite($my_open_file,json_encode($db,JSON_PRETTY_PRINT)) ; 
+     fclose($my_open_file) ;
+}
+
+
+function getUser(string $username){ # props ile username gelecek
+       $users = getData()["users"] ; # getDatadan umumie users goturururk ve her birine catmaq ucun donguye saliriq
+       foreach($users as $user){ 
+           if ($user["username"] == $username) { #eger datadan gelen username props ile gelen usernameye beraberdirse return elesin
+            return $user ;
+           }
+       }
+       return null ;
+}
  
 
 
- function filmArtir (string $baslik, string $aciklama, string $resim, string $url, int $yorumSayisi = 0, int $begeniSayisi = 0, bool $vizyon = false){
-            $my_file  = fopen("data.txt","a") ;
-            $items = $baslik."|".$aciklama."|".$resim."|".$url."|".$yorumSayisi."|".$begeniSayisi."|".(int)$vizyon;
-            fwrite($my_file,$items."\n");
-            fclose($my_file) ;
+ function createBlog (string $title, string $description, string $img, string $url, int $coments = 0, int $likes = 0){
+   $db = getData() ;
+   array_push($db["movies"],array(
+    "id"=>count($db["movies"]) + 1, # id her defe artacaqdir 4 5 6
+    "title"=>$title,
+    "description"=>$description,
+    "image"=>$img,
+    "url"=>$url,
+    "likes"=>$likes,
+    "coments"=>$coments
+   )) ;
+   $my_open_file  = fopen("db.json","w");
+   fwrite($my_open_file,json_encode($db,JSON_PRETTY_PRINT)) ; 
+   fclose($my_open_file) ;
    }
 
   // filmArtir("Yeni Film 3","yeni description","3.jpeg") ;

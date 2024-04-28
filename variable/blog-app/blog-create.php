@@ -3,15 +3,13 @@
     include "func_var/functions.php" ;   # funksiyalar
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $title = $_POST["basliq"];
-        $desc = $_POST["aciklama"];
-        $img = $_POST["resim"];
+        $title = $_POST["title"];
+        $desc = $_POST["desc"];
+        $img = $_POST["img"];
         $url = $_POST["url"];
         
-        echo $title ;
-        echo $desc ;
-        echo $img ;
-        filmArtir($title,$desc,$img,$url) ;
+        
+        createBlog($title,$desc,$img,$url) ;
         header ("Location: index.php") ;
     }
 
@@ -24,19 +22,19 @@
           <?php include "views/_menu.php" ;?>
 
             <div class="col-9">
-            <form action="create.php" method="POST">
-                <label for="">Basliq :</label>
-                <input type="text" class="w-100" name="basliq">
+            <form action="blog-create.php" method="POST">
+                <label for="">title :</label>
+                <input type="text" class="w-100" name="title">
                 <br>
                 <div class="mt-3">
-                <label for="">Aciklama :</label>
-                <input type="text" class="w-100" name="aciklama">
+                <label for="">description :</label>
+                <input type="text" class="w-100" name="desc">
                 </div>
 
-                <label for="">Resim :</label>
-                <input type="text" class="w-100" name="resim">
+                <label for="">image :</label>
+                <input type="text" class="w-100" name="img">
                 <div class="mt-3">
-                <label for="">Url :</label>
+                <label for="">url :</label>
                 <input type="text" class="w-100" name="url">
                 </div>
                 <br>

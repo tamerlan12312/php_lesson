@@ -1,4 +1,4 @@
-<?php $ozet = count(getData()["categories"]) .' kategoride '.count(filmleriGetir()). ' film listelenmiştir';?>
+<?php $ozet = count(getData()["categories"]) .' kategoride '.count(getData()["movies"]). ' film listelenmiştir';?>
     
        <div class="col-3">
                 <ul class="list-group">

@@ -7,11 +7,13 @@
 
        $username = $_POST["username"];
        $password = $_POST["password"];
-       if ($username == user["username"] and $password == user["password"]) {
+
+       $user = getUser($username) ; #usernameni props ile otururuk getUser funksiyasina
+       if (!is_null($user) and $username == $user["username"] and $password == $user["password"]) {
       
 
-        setcookie("auth[username]",user["username"],time() + (60*60)); 
-        setcookie("auth[name]",user["name"],time() + (60*60));
+        setcookie("auth[username]",$user["username"],time() + (60*60)); 
+        setcookie("auth[name]",$user["name"],time() + (60*60));
         header("Location:index.php") ;
       
     

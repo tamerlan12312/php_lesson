@@ -1,10 +1,102 @@
 {
-    "users" :[],
-    "movies":[],
-    "categories":[
-        {"id":1,"name":"Macera"},
-        {"id":2,"name":"Dram"},
-        {"id":3,"name":"Komedi"},
-        {"id":4,"name":"Korku"}
+    "users": [
+        {
+            "id": 0,
+            "name": "Tamerlan Farajullayev",
+            "username": "farajullayevt",
+            "password": "12345",
+            "email": "farajullayevt@gmail.com"
+        },
+        {
+            "id": 1,
+            "name": "Tamerlan1 Farajullayev",
+            "username": "farajullayevt1",
+            "password": "12345",
+            "email": "farajullayevt1@gmail.com"
+        },
+        {
+            "id": 2,
+            "name": "Tamerlan2 Farajullayev",
+            "username": "farajullayevt2",
+            "password": "12345",
+            "email": "farajullayevt2@gmail.com"
+        },
+        {
+            "id": 4,
+            "name": "Register Tamerlan",
+            "username": "tamerlan",
+            "password": "123",
+            "email": "ferecullayevt@gmail.com"
+        },
+        {
+            "id": 5,
+            "name": "asd",
+            "username": "asda",
+            "password": "asd",
+            "email": "asd"
+        },
+        {
+            "id": 6,
+            "name": "Tamerlan",
+            "username": "tamerlan2",
+            "password": "123",
+            "email": "farajullayevt@gmail.com"
+        }
+    ],
+    "movies": [
+        {
+            "id": 0,
+            "title": "film 1",
+            "description": "film 1 description",
+            "url": "film-1",
+            "image": "1.jpeg",
+            "likes": "10",
+            "coments": "5"
+        },
+        {
+            "id": 1,
+            "title": "film 2",
+            "description": "film 2 description",
+            "url": "film-2",
+            "image": "2.jpeg",
+            "likes": "20",
+            "coments": "0"
+        },
+        {
+            "id": 2,
+            "title": "film 3",
+            "description": "film 3 description",
+            "url": "film-3",
+            "image": "3.jpeg",
+            "likes": "15",
+            "coments": "35"
+        },
+        {
+            "id": 4,
+            "title": "db film 4",
+            "description": "description ",
+            "image": "2.jpeg",
+            "url": "film-4",
+            "likes": 0,
+            "coments":  0
+        }
+    ],
+    "categories": [
+        {
+            "id": 1,
+            "name": "Macera"
+        },
+        {
+            "id": 2,
+            "name": "Dram"
+        },
+        {
+            "id": 3,
+            "name": "Komedi"
+        },
+        {
+            "id": 4,
+            "name": "Korku"
+        }
     ]
 }

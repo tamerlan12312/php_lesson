@@ -1,17 +1,18 @@
 <?php
   session_start() ;
+  
 
-  const user = array (
-    "username" => "Tamerlan",
-    "password" => "123",
-    "name"     => "Tamerlan Farajullayev"
-  ) ;
+  // const user = array (
+  //   "username" => "Tamerlan",
+  //   "password" => "123",
+  //   "name"     => "Tamerlan Farajullayev"
+  // ) ;
 
-  const baslik = "Popüler Filmler";
+  # const baslik = "Popüler Filmler";
   # const username = "Tamerlan" ;
   # const password = "tamerlan12312";
 
-  $kategoriler = array("Macera","Dram","Komedi","Korku","Bilim Kurgu");
+  # $kategoriler = array("Macera","Dram","Komedi","Korku","Bilim Kurgu");
 
 //   $filmler = array( 
 //       "1"=> array(

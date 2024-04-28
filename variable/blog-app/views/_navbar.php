@@ -28,7 +28,10 @@
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="create.php">Create</a>
+          <a class="nav-link" href="blog-create.php">Create Blog</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="blog-create.php">Blog List</a>
         </li>
       </ul>
       <ul class="navbar-nav  mb-2 mb-lg-0">
@@ -37,14 +40,14 @@
           <a class="nav-link" href="logout.php">Log out</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Welcome, <?php echo $_COOKIE["auth"]["name"] ;?></a>
+          <a class="nav-link" href="#">Welcome, <?php echo $_COOKIE["auth"]["username"] ;?></a>
         </li>
       <?php else :?>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="login.php">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Register</a>
+          <a class="nav-link" href="register.php">Register</a>
         </li>
       <?php endif ;?>
       </ul>
