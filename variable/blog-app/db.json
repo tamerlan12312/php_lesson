@@ -41,6 +41,13 @@
             "username": "tamerlan2",
             "password": "123",
             "email": "farajullayevt@gmail.com"
+        },
+        {
+            "id": 7,
+            "name": "Test",
+            "username": "test",
+            "password": "123",
+            "email": "test@gmail.com"
         }
     ],
     "movies": [
@@ -51,7 +58,8 @@
             "url": "film-1",
             "image": "1.jpeg",
             "likes": "10",
-            "coments": "5"
+            "coments": "5",
+            "active": true
         },
         {
             "id": 1,
@@ -60,7 +68,8 @@
             "url": "film-2",
             "image": "2.jpeg",
             "likes": "20",
-            "coments": "0"
+            "coments": "0",
+            "active": true
         },
         {
             "id": 2,
@@ -69,7 +78,8 @@
             "url": "film-3",
             "image": "3.jpeg",
             "likes": "15",
-            "coments": "35"
+            "coments": "35",
+            "active": false
         },
         {
             "id": 4,
@@ -78,7 +88,28 @@
             "image": "2.jpeg",
             "url": "film-4",
             "likes": 0,
-            "coments":  0
+            "coments": 0,
+            "active": false
+        },
+        {
+            "id": 5,
+            "title": "1",
+            "description": "1",
+            "image": "2.jpeg",
+            "url": "1-url",
+            "likes": 0,
+            "coments": 0,
+            "active": true
+        },
+        {
+            "id": 6,
+            "title": "film 7",
+            "description": "film 7 description",
+            "image": "3.jpeg",
+            "url": "film 7 - description",
+            "likes": 0,
+            "coments": 0,
+            "active": false
         }
     ],
     "categories": [

@@ -31,7 +31,7 @@
           <a class="nav-link" href="blog-create.php">Create Blog</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="blog-create.php">Blog List</a>
+          <a class="nav-link" href="admin-blogs.php">Admin Blog</a>
         </li>
       </ul>
       <ul class="navbar-nav  mb-2 mb-lg-0">

@@ -35,7 +35,23 @@ function getUser(string $username){ # props ile username gelecek
        return null ;
 }
  
+function editBlog(int $id,string $title,string $desc,string $img,string $url){
+ $db =getData() ;
+ foreach($db["movies"] as &$movie){ # burada original massivi update etmelidir & referansini alaraq kopyasini elemeyecekdir
+    if ($movie["id"] == $id) {
+       
+      $movie["title"] = $title ;
+      $movie["description"] = $desc ;
+      $movie["image"] = $img ;
+      $movie["url"] = $url ;
+      $myfile = fopen("db.json","w") ;
+      fwrite($myfile,json_encode($db,JSON_PRETTY_PRINT)) ;
+      fclose($myfile) ;
 
+      break ;
+    }
+ }
+}
 
  function createBlog (string $title, string $description, string $img, string $url, int $coments = 0, int $likes = 0){
    $db = getData() ;
@@ -46,11 +62,23 @@ function getUser(string $username){ # props ile username gelecek
     "image"=>$img,
     "url"=>$url,
     "likes"=>$likes,
-    "coments"=>$coments
+    "coments"=>$coments,
+    "active" => false
    )) ;
    $my_open_file  = fopen("db.json","w");
    fwrite($my_open_file,json_encode($db,JSON_PRETTY_PRINT)) ; 
    fclose($my_open_file) ;
+   }
+
+
+   function getBlogById (int $movieId){
+     $movies =  getData()["movies"] ;
+     foreach ($movies as $movie){
+         if ($movie["id"] == $movieId) {
+             return $movie ;
+         }
+      }
+      return null ;
    }
 
   // filmArtir("Yeni Film 3","yeni description","3.jpeg") ;

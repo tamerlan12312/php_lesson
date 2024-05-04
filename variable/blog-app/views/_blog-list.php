@@ -10,7 +10,7 @@ const baslik = "Populyar Filmler" ;
                 </p>
 
                 <?php foreach( getData()["movies"] as $id => $film) : ?>
-
+                <?php if($film["active"]) :?>
                         <div class="card mb-3">
                             <div class="row">
                                 <div class="col-3">
@@ -33,7 +33,7 @@ const baslik = "Populyar Filmler" ;
                                 </div>
                             </div>
                         </div>
-
+                 <?php endif ;?>
                 <?php endforeach ; ?>
 
                 <h4 class="text-center">
