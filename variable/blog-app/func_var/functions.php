@@ -35,7 +35,7 @@ function getUser(string $username){ # props ile username gelecek
        return null ;
 }
  
-function editBlog(int $id,string $title,string $desc,string $img,string $url){
+function editBlog(int $id,string $title,string $desc,string $img,string $url,bool $active){
  $db =getData() ;
  foreach($db["movies"] as &$movie){ # burada original massivi update etmelidir & referansini alaraq kopyasini elemeyecekdir
     if ($movie["id"] == $id) {
@@ -44,6 +44,7 @@ function editBlog(int $id,string $title,string $desc,string $img,string $url){
       $movie["description"] = $desc ;
       $movie["image"] = $img ;
       $movie["url"] = $url ;
+      $movie["active"] = $active ;
       $myfile = fopen("db.json","w") ;
       fwrite($myfile,json_encode($db,JSON_PRETTY_PRINT)) ;
       fclose($myfile) ;
@@ -51,6 +52,18 @@ function editBlog(int $id,string $title,string $desc,string $img,string $url){
       break ;
     }
  }
+}
+
+function deleteBlog(int $id) {
+   $db = getData() ;
+    foreach($db["movies"] as $key => $movie){
+       if ($movie["id"] == $id) {
+         array_splice($db["movies"],$key,1) ;
+       }
+    }
+   $myfile = fopen("db.json","w") ;
+   fwrite($myfile,json_encode($db,JSON_PRETTY_PRINT)) ;
+   fclose($myfile) ;
 }
 
  function createBlog (string $title, string $description, string $img, string $url, int $coments = 0, int $likes = 0){

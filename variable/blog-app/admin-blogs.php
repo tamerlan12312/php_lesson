@@ -4,6 +4,7 @@
     
 ?>
 <?php require "views/_header.php" ;?>
+<?php require "views/_message.php" ;?>
 <?php require "views/_navbar.php" ;?>
     <div class="container my-5">
         <div class="row">

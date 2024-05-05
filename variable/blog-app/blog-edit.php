@@ -9,9 +9,11 @@
         $desc = $_POST["desc"];
         $img = $_POST["img"];
         $url = $_POST["url"];
+        $active = isset($_POST["active"]) ? true : false ;
         
-        
-        editBlog($id,$title,$desc,$img,$url) ;
+        $_SESSION["message"] = $title ."adli bloq update olundu" ;
+        $_SESSION["type"] = "warning" ;
+        editBlog($id,$title,$desc,$img,$url,$active) ;
         header ("Location: admin-blogs.php") ;
     }
 
@@ -38,6 +40,10 @@
                 <div class="mt-3">
                 <label for="">url :</label>
                 <input type="text" class="w-100" name="url" value="<?php echo $selectedMovie["url"] ;?>">
+                </div>
+                <div class="form-check mt-3">
+                <label for="" class="form-check-label">Active</label>
+                <input type="checkbox" class="form-check-input " name="active" <?php if($selectedMovie["active"]) {echo "checked" ;} ?>>
                 </div>
                 <br>
                 <input type="submit" class="mt-4" value="Gonder">

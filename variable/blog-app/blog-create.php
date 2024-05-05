@@ -10,7 +10,9 @@
         
         
         createBlog($title,$desc,$img,$url) ;
-        header ("Location: index.php") ;
+        $_SESSION["message"] = $title ."adli bloq elave olundu" ;
+        $_SESSION["type"] = "success" ;
+        header ("Location: admin-blogs.php") ;
     }
 
 
