@@ -9,10 +9,14 @@
         $url = $_POST["url"];
         
         
-        createBlog($title,$desc,$img,$url) ;
+       if (createBlog($title,$desc,$img,$url)) {
         $_SESSION["message"] = $title ."adli bloq elave olundu" ;
         $_SESSION["type"] = "success" ;
         header ("Location: admin-blogs.php") ;
+       }  else {
+        echo "Xeta bas verdi" ;
+       }
+      
     }
 
 

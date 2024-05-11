@@ -66,21 +66,33 @@ function deleteBlog(int $id) {
    fclose($myfile) ;
 }
 
- function createBlog (string $title, string $description, string $img, string $url, int $coments = 0, int $likes = 0){
-   $db = getData() ;
-   array_push($db["movies"],array(
-    "id"=>count($db["movies"]) + 1, # id her defe artacaqdir 4 5 6
-    "title"=>$title,
-    "description"=>$description,
-    "image"=>$img,
-    "url"=>$url,
-    "likes"=>$likes,
-    "coments"=>$coments,
-    "active" => false
-   )) ;
-   $my_open_file  = fopen("db.json","w");
-   fwrite($my_open_file,json_encode($db,JSON_PRETTY_PRINT)) ; 
-   fclose($my_open_file) ;
+ function createBlog (string $title, string $description, string $img, string $url){
+   include "config_mysql.php" ;
+  
+   $query = "INSERT INTO blogs(title,description,imageUrl,url,active) VALUES ('$title','$description','$img','$url',1)" ;
+
+   $result = mysqli_query($connection,$query) ;
+
+
+   mysqli_close($connection) ;
+
+  return $result ;
+
+
+   // $db = getData() ;
+   // array_push($db["movies"],array(
+   //  "id"=>count($db["movies"]) + 1, # id her defe artacaqdir 4 5 6
+   //  "title"=>$title,
+   //  "description"=>$description,
+   //  "image"=>$img,
+   //  "url"=>$url,
+   //  "likes"=>$likes,
+   //  "coments"=>$coments,
+   //  "active" => false
+   // )) ;
+   // $my_open_file  = fopen("db.json","w");
+   // fwrite($my_open_file,json_encode($db,JSON_PRETTY_PRINT)) ; 
+   // fclose($my_open_file) ;
    }
 
 
