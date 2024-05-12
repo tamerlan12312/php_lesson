@@ -16,36 +16,32 @@
                         <th>Title</th>
                         <th>Description</th>
                         <th style="width : 80px">Url</th>
-                        <th style="width : 80px">Likes</th>
-                        <th style="width : 80px">Comments</th>
                         <th style="width : 80px">Active</th>
                         <th style="width : 140px"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach(getData()["movies"] as $movie) :?>
+                    <?php $result = getBlogs() ; while($film = mysqli_fetch_assoc($result)) :?>
                    <tr>
                     <td>
-                        <img src="img/<?php echo $movie["image"]?>" alt="" class="img-fluid">
+                        <img src="img/<?php echo $film["imageUrl"]?>" alt="" class="img-fluid">
                     </td>
-                    <td><?php echo $movie["title"] ;?></td>
-                    <td><?php echo $movie["description"] ;?></td>
-                    <td><?php echo $movie["url"] ;?></td>
-                    <td><?php echo $movie["likes"] ;?></td>
-                    <td><?php echo $movie["coments"] ;?></td>
+                    <td><?php echo $film["title"] ;?></td>
+                    <td><?php echo $film["description"] ;?></td>
+                    <td><?php echo $film["url"] ;?></td>
                     <td>
-                        <?php if($movie["active"]) :?>
+                        <?php if($film["active"]) :?>
                             <i class="fa-solid fa-check"></i>
                         <?php else :?>
                              <i class="fa-solid fa-xmark"></i>
                         <?php endif ;?>
                     </td>
                     <td>
-                         <a class="btn  btn-warning btn-sm" href="blog-edit.php?id=<?php echo $movie["id"]?>">Edit</a>
-                         <a class="btn  btn-danger btn-sm" href="blog-delete.php?id=<?php echo $movie["id"]?>">Delete</a>
+                         <a class="btn  btn-warning btn-sm" href="blog-edit.php?id=<?php echo $film["id"]?>">Edit</a>
+                         <a class="btn  btn-danger btn-sm" href="blog-delete.php?id=<?php echo $film["id"]?>">Delete</a>
                     </td>
                    </tr>
-                    <?php endforeach ;?>    
+                    <?php endwhile ;?>    
                 </tbody>
             </table>
            </div>

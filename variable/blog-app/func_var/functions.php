@@ -96,6 +96,15 @@ function deleteBlog(int $id) {
    }
 
 
+   function getBlogs () {
+      include "config_mysql.php" ;
+      $query = "SELECT * from blogs" ;
+      $result = mysqli_query($connection,$query) ;
+      mysqli_close($connection) ;
+      return $result ;
+
+   }
+
    function getBlogById (int $movieId){
      $movies =  getData()["movies"] ;
      foreach ($movies as $movie){

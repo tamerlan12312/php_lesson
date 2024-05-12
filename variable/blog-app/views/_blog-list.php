@@ -9,12 +9,12 @@ const baslik = "Populyar Filmler" ;
                     <?php echo $ozet?>
                 </p>
 
-                <?php foreach( getData()["movies"] as $id => $film) : ?>
+                <?php $result = getBlogs() ; while ($film = mysqli_fetch_assoc($result)) : ?>
                 <?php if($film["active"]) :?>
                         <div class="card mb-3">
                             <div class="row">
                                 <div class="col-3">
-                                    <img class="img-fluid" src="img/<?php echo $film["image"]?>">                          
+                                    <img class="img-fluid" src="img/<?php echo $film["imageUrl"]?>">                          
                                 </div>
                                 <div class="col-9">
                                     <div class="card-body">                        
@@ -22,11 +22,6 @@ const baslik = "Populyar Filmler" ;
                                         <p class="card-text">
                                          <?php qisaDesc($film["description"],200) ; ?> 
                                        </p><div>
-                                        <?php if ($film["coments"] > 0) : ?>
-                                            <span class="badge bg-danger me-1"><?php echo $film["coments"]?> yorum</span>
-                                       <?php endif ;?>
-                                            <span class="badge bg-primary me-1"><?php echo$film["likes"];  ?> beğeni</span>
-                                       </span>
                                         </div>
                                     </div>
                                 
@@ -34,7 +29,7 @@ const baslik = "Populyar Filmler" ;
                             </div>
                         </div>
                  <?php endif ;?>
-                <?php endforeach ; ?>
+                <?php endwhile ; ?>
 
                 <h4 class="text-center">
                 <?php echo $notfound ;?>
