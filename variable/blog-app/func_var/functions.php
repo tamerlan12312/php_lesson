@@ -35,35 +35,39 @@ function getUser(string $username){ # props ile username gelecek
        return null ;
 }
  
-function editBlog(int $id,string $title,string $desc,string $img,string $url,bool $active){
- $db =getData() ;
- foreach($db["movies"] as &$movie){ # burada original massivi update etmelidir & referansini alaraq kopyasini elemeyecekdir
-    if ($movie["id"] == $id) {
-       
-      $movie["title"] = $title ;
-      $movie["description"] = $desc ;
-      $movie["image"] = $img ;
-      $movie["url"] = $url ;
-      $movie["active"] = $active ;
-      $myfile = fopen("db.json","w") ;
-      fwrite($myfile,json_encode($db,JSON_PRETTY_PRINT)) ;
-      fclose($myfile) ;
+function editBlog(int $id,string $title,string $desc,string $img,string $url,int $active){
+   include "config_mysql.php" ;
+ 
+   $query = "UPDATE blogs SET title='$title',description='$desc',imageUrl = '$img', url='$url', active=$active WHERE id=$id";
+   $result = mysqli_query($connection,$query) ;
+   echo mysqli_error($connection) ;
+   return $result ; 
 
-      break ;
-    }
- }
+
+//  $db =getData() ;
+//  foreach($db["movies"] as &$movie){ # burada original massivi update etmelidir & referansini alaraq kopyasini elemeyecekdir
+//     if ($movie["id"] == $id) {
+       
+//       $movie["title"] = $title ;
+//       $movie["description"] = $desc ;
+//       $movie["image"] = $img ;
+//       $movie["url"] = $url ;
+//       $movie["active"] = $active ;
+//       $myfile = fopen("db.json","w") ;
+//       fwrite($myfile,json_encode($db,JSON_PRETTY_PRINT)) ;
+//       fclose($myfile) ;
+
+//       break ;
+//     }
+//  }
 }
 
 function deleteBlog(int $id) {
-   $db = getData() ;
-    foreach($db["movies"] as $key => $movie){
-       if ($movie["id"] == $id) {
-         array_splice($db["movies"],$key,1) ;
-       }
-    }
-   $myfile = fopen("db.json","w") ;
-   fwrite($myfile,json_encode($db,JSON_PRETTY_PRINT)) ;
-   fclose($myfile) ;
+   include "config_mysql.php" ;
+   $query = "DELETE FROM blogs WHERE id=$id" ;
+   $result = mysqli_query($connection,$query) ;
+   return $result ;
+   mysqli_close($connection) ;
 }
 
  function createBlog (string $title, string $description, string $img, string $url){
@@ -95,6 +99,12 @@ function deleteBlog(int $id) {
    // fclose($my_open_file) ;
    }
 
+   function control_input ($data){
+   $data = strip_tags($data) ; 
+   // $data = htmlspecialchars($data) ;
+   $data = stripslashes($data) ;
+   return $data ;
+   }
 
    function getBlogs () {
       include "config_mysql.php" ;
@@ -106,13 +116,15 @@ function deleteBlog(int $id) {
    }
 
    function getBlogById (int $movieId){
-     $movies =  getData()["movies"] ;
-     foreach ($movies as $movie){
-         if ($movie["id"] == $movieId) {
-             return $movie ;
-         }
-      }
-      return null ;
+     include "config_mysql.php" ;
+
+     $query = "SELECT * from blogs WHERE id='$movieId' " ;
+
+     $result = mysqli_query($connection,$query) ;
+
+
+     mysqli_close($connection) ;
+     return $result ;
    }
 
   // filmArtir("Yeni Film 3","yeni description","3.jpeg") ;

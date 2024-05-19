@@ -4,9 +4,14 @@
 
     $id=$_GET["id"] ;
 
-    deleteBlog($id) ;
-    $_SESSION["message"] = $id ."id nomresi  bloq silindi" ;
-    $_SESSION["type"] = "danger" ;
-    header('Location: admin-blogs.php') ;
+    if (deleteBlog($id) ) {
+        $_SESSION["message"] = $id ."id nomresi  bloq silindi" ;
+        $_SESSION["type"] = "danger" ;
+        header('Location: admin-blogs.php') ;
+    } else {
+        echo "Xeta" ;
+    }
+
+
  
 ?>

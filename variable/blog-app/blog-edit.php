@@ -2,19 +2,25 @@
     require "func_var/variable.php" ;    # variable
     include "func_var/functions.php" ;   # funksiyalar
     $id = $_GET["id"] ;
-    $selectedMovie = getBlogById($id) ;
+
+    $result = getBlogById($id) ;
+    $selectedMovie = mysqli_fetch_assoc($result) ;
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $title = $_POST["title"];
         $desc = $_POST["desc"];
         $img = $_POST["img"];
         $url = $_POST["url"];
-        $active = isset($_POST["active"]) ? true : false ;
+        $active = isset($_POST["active"]) ? 1 : 0 ;
+        if(editBlog($id,$title,$desc,$img,$url,$active)){
+            $_SESSION["message"] = $title ."adli bloq update olundu" ;
+            $_SESSION["type"] = "warning" ;
+            header ("Location: admin-blogs.php") ;
+        }   else {
+            echo "xeta" ;
+        }
         
-        $_SESSION["message"] = $title ."adli bloq update olundu" ;
-        $_SESSION["type"] = "warning" ;
-        editBlog($id,$title,$desc,$img,$url,$active) ;
-        header ("Location: admin-blogs.php") ;
+
     }
 
 
@@ -35,7 +41,7 @@
 
                 <div class="mt-3">
                 <label for="">image :</label>
-                <input type="text" class="w-100" name="img" value="<?php echo $selectedMovie["image"] ;?>">
+                <input type="text" class="w-100" name="img" value="<?php echo $selectedMovie["imageUrl"] ;?>">
                 </div>
                 <div class="mt-3">
                 <label for="">url :</label>
