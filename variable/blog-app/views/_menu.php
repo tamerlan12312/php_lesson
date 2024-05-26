@@ -2,11 +2,12 @@
     
        <div class="col-3">
                 <ul class="list-group">
-                    <?php
-                        foreach(getData()["categories"] as $kategori) : ?>
-                        <a href='<?php echo "movies/".$kategori["id"]?>' class="list-group-item list-group-item-action">
-                         <?php echo $kategori["name"] ;?>
+                    <?php $result = getCategories() ; while ($category = mysqli_fetch_assoc($result)) : ?>
+                        <?php if($category["active"]):?>
+                        <a href='<?php echo "movies/".$category["id"]?>' class="list-group-item list-group-item-action">
+                         <?php echo ucfirst($category["name"]) ;?>
                         </a>
-                        <?php endforeach ;?>
+                        <?php endif ;?>
+                        <?php endwhile ;?>
                 </ul>
             </div>

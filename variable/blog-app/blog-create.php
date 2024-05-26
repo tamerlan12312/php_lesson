@@ -20,6 +20,7 @@
             // $title = strip_tags($input_title) ; # 
             // $title = htmlspecialchars($input_title) ;
             $title = control_input($input_title); # sqle geden sorgulara mudaxile etmemek ucun ONEMLIDIR
+            #stripslahess - bunlar sql injectionlardi kenardan  kod seklinde post gonderilenlerin qarsilarini alirlar
         }
       //validate description
 
@@ -43,8 +44,8 @@
        echo $description ;
 
         if (empty($title_err) and empty($description_err)) {
-            if (createBlog($title,$desc,$img,$url)) {
-             $_SESSION["message"] = $title ."adli bloq elave olundu" ;
+            if (createBlog($title,$description,$img,$url)) {
+             $_SESSION["message"] = $title ." adli bloq elave olundu" ;
              $_SESSION["type"] = "success" ;
              header ("Location: admin-blogs.php") ;
             }  else {

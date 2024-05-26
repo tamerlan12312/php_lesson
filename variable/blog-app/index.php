@@ -1,19 +1,6 @@
 <?php
     require "func_var/variable.php" ;    # variable 
-    include "func_var/functions.php" ;   # funksiyalar
-
-      # burada variabledan data geldiyi ucun her defe sehifeye kecid etdikde ordaki data gelecekdir
-      # post olunmus data 1 defe gelecekdir sehife deyisdikde evvelki datalar gelir
-    //  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    //      $title = $_POST["basliq"];
-    //      $desc = $_POST["aciklama"];
-    //      $img = $_POST["resim"];
-         
-    //      echo $title ;
-    //      echo $desc ;
-    //      echo $img ;
-    //      filmArtir($filmler,$title,$desc,$img) ;
-    //  }
+    include "func_var/functions.php" ;   # funksiyala
     
 ?>
 <?php require "views/_header.php" ;?>

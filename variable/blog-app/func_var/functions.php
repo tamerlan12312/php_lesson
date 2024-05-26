@@ -70,39 +70,34 @@ function deleteBlog(int $id) {
    mysqli_close($connection) ;
 }
 
- function createBlog (string $title, string $description, string $img, string $url){
+ function createBlog (string $title, string $description, string $img, string $url,int $active = 0){
    include "config_mysql.php" ;
-  
-   $query = "INSERT INTO blogs(title,description,imageUrl,url,active) VALUES ('$title','$description','$img','$url',1)" ;
+   # MYSQL PREPARED
+   $query = "INSERT INTO blogs(title,description,imageUrl,url,active) VALUES (?,?,?,?,?)" ;
+   $result = mysqli_prepare($connection,$query) ;
 
-   $result = mysqli_query($connection,$query) ;
-
-
+   mysqli_stmt_bind_param($result,'ssssi', $title,$description,$img,$url,$active) ;
+   mysqli_stmt_execute($result);
    mysqli_close($connection) ;
 
-  return $result ;
+   return $result ;
+   }
 
-
-   // $db = getData() ;
-   // array_push($db["movies"],array(
-   //  "id"=>count($db["movies"]) + 1, # id her defe artacaqdir 4 5 6
-   //  "title"=>$title,
-   //  "description"=>$description,
-   //  "image"=>$img,
-   //  "url"=>$url,
-   //  "likes"=>$likes,
-   //  "coments"=>$coments,
-   //  "active" => false
-   // )) ;
-   // $my_open_file  = fopen("db.json","w");
-   // fwrite($my_open_file,json_encode($db,JSON_PRETTY_PRINT)) ; 
-   // fclose($my_open_file) ;
+   function createCategory(string $categoryname){
+    include "config_mysql.php" ;
+    $query = "INSERT INTO categories(name) VALUES (?)";
+    $result = mysqli_prepare($connection,$query) ;
+    mysqli_stmt_bind_param($result,'s',$categoryname) ;
+    mysqli_stmt_execute($result) ;
+    mysqli_close($connection) ;
+    
+    return $result ;
    }
 
    function control_input ($data){
-   $data = strip_tags($data) ; 
-   // $data = htmlspecialchars($data) ;
-   $data = stripslashes($data) ;
+   $data = strip_tags($data) ;  # SQL INJECTION
+   // $data = htmlspecialchars($data) ; # SQL INJECTION
+   $data = stripslashes($data) ; # SQL INJECTION
    return $data ;
    }
 
@@ -112,7 +107,15 @@ function deleteBlog(int $id) {
       $result = mysqli_query($connection,$query) ;
       mysqli_close($connection) ;
       return $result ;
+   }
 
+   function getCategories(){
+    include "config_mysql.php" ;
+    $query = "SELECT * from categories" ;
+    $result = mysqli_query($connection,$query) ;
+    mysqli_close($connection);
+
+    return $result ;
    }
 
    function getBlogById (int $movieId){
@@ -125,6 +128,34 @@ function deleteBlog(int $id) {
 
      mysqli_close($connection) ;
      return $result ;
+   }
+
+   function getCategoryById(int $categoryId){
+      include "config_mysql.php" ;
+      $query = "SELECT * from categories WHERE id=$categoryId" ;
+      $result = mysqli_query($connection,$query) ;
+      mysqli_close($connection) ;
+      return $result ;
+
+   }
+
+   function editCategory(int $id,string $categoryname,bool $active){
+     include "config_mysql.php" ;
+    $query = "UPDATE categories SET name=?,active=?  WHERE id=? " ;
+    $result = mysqli_prepare($connection,$query) ;
+    mysqli_stmt_bind_param($result,'sii',$categoryname,$active,$id) ;
+    mysqli_stmt_execute($result) ;
+    mysqli_close($connection);
+    return $result ;
+   }
+
+   function deleteCategory (int $id){
+   include "config_mysql.php" ;
+   $query = "DELETE FROM categories WHERE id=$id" ;
+   $result = mysqli_query($connection,$query) ;
+   mysqli_close($connection) ;
+   return $result ;
+
    }
 
   // filmArtir("Yeni Film 3","yeni description","3.jpeg") ;

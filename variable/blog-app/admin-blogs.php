@@ -9,6 +9,15 @@
     <div class="container my-5">
         <div class="row">
            <div class="col-12 ">
+
+           <div class="card mb-1">
+            <div class="card-body">
+                <a href="blog-create.php" class="btn btn-primary"> 
+                    New Blog
+                </a>
+            </div>
+           </div>
+
             <table class="table table-bordered">
                 <thead>
                     <tr>
