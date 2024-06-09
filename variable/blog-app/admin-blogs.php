@@ -25,6 +25,7 @@
                         <th>Title</th>
                         <th>Description</th>
                         <th style="width : 80px">Url</th>
+                        <th style="width : 80px">Category</th>
                         <th style="width : 80px">Active</th>
                         <th style="width : 140px"></th>
                     </tr>
@@ -38,6 +39,7 @@
                     <td><?php echo $film["title"] ;?></td>
                     <td><?php echo htmlspecialchars_decode($film["description"]) ;?></td>
                     <td><?php echo $film["url"] ;?></td>
+                    <td><?php echo $film["name"] ;?></td>
                     <td>
                         <?php if($film["active"]) :?>
                             <i class="fa-solid fa-check"></i>
