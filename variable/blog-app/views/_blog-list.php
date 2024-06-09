@@ -20,7 +20,7 @@ const baslik = "Populyar Filmler" ;
                                     <div class="card-body">                        
                                         <h5 class="card-title"><a href="blog-details.php?id=<?php echo $film["id"];?>"><?php echo $film["title"] ;?></a></h5>
                                         <p class="card-text">
-                                         <?php qisaDesc($film["description"],200) ; ?> 
+                                         <?php qisaDesc(htmlspecialchars_decode($film["description"]),200) ; ?> 
                                        </p><div>
                                         </div>
                                     </div>

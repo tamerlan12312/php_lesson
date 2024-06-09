@@ -95,9 +95,9 @@ function deleteBlog(int $id) {
    }
 
    function control_input ($data){
-   $data = strip_tags($data) ;  # SQL INJECTION
-   // $data = htmlspecialchars($data) ; # SQL INJECTION
-   $data = stripslashes($data) ; # SQL INJECTION
+   // $data = strip_tags($data) ;  # SQL INJECTION // html etiketlerini yigisdirir
+   $data = htmlspecialchars($data) ; # SQL INJECTION // html etiketlerini unicode cevirir
+   $data = stripslashes($data) ; # SQL INJECTION // \\ tipli seyleri cixardir
    return $data ;
    }
 

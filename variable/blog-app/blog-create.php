@@ -32,7 +32,7 @@
            $description_err = "Desc cox kicikdir" ;
       }
       else {
-          $description = strip_tags($input_desc) ;
+          $description = control_input($input_desc) ;
       }
 
 
@@ -70,7 +70,9 @@
                 <br>
                 <div class="mt-3">
                 <label for="">description :</label>
-                <input type="text" class="w-100 form-control  <?php echo (!empty($description_err)) ? "is-invalid" : "" ;?>" name="desc" value="<?php echo $description ;?>">
+                <textarea name="desc" id="desc" cols="30" rows="10" class="w-100 form-control  <?php echo (!empty($description_err)) ? "is-invalid" : "" ;?>">
+                       <?php echo $description; ?>
+               </textarea>
                 <span class="invalid-feedback"><?php echo $description_err ;?></span>    
             </div>
 
@@ -90,4 +92,6 @@
 
         </div>
     </div>
+
+<?php include "views/_ckeditor.php";?>
 <?php include "views/_footer.php";?>

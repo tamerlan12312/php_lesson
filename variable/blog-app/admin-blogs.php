@@ -36,7 +36,7 @@
                         <img src="img/<?php echo $film["imageUrl"]?>" alt="" class="img-fluid">
                     </td>
                     <td><?php echo $film["title"] ;?></td>
-                    <td><?php echo $film["description"] ;?></td>
+                    <td><?php echo htmlspecialchars_decode($film["description"]) ;?></td>
                     <td><?php echo $film["url"] ;?></td>
                     <td>
                         <?php if($film["active"]) :?>
