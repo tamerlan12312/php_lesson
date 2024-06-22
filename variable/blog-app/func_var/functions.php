@@ -35,10 +35,10 @@ function getUser(string $username){ # props ile username gelecek
        return null ;
 }
  
-function editBlog(int $id,string $title,string $desc,string $img,string $url,int $active){
+function editBlog(int $id,string $title,string $desc,string $img,string $url,int $category,int $active){
    include "config_mysql.php" ;
  
-   $query = "UPDATE blogs SET title='$title',description='$desc',imageUrl = '$img', url='$url', active=$active WHERE id=$id";
+   $query = "UPDATE blogs SET title='$title',description='$desc',imageUrl = '$img', url='$url',category_id=$category ,active=$active WHERE id=$id";
    $result = mysqli_query($connection,$query) ;
    echo mysqli_error($connection) ;
    return $result ; 
@@ -70,13 +70,13 @@ function deleteBlog(int $id) {
    mysqli_close($connection) ;
 }
 
- function createBlog (string $title, string $description, string $img, string $url,int $active = 0){
+ function createBlog (string $title, string $description, string $img, string $url,int $category,int $active = 0){ #category select ile geldiyi ucun idsini goturur ona gore post etdikde category_id yazilir
    include "config_mysql.php" ;
    # MYSQL PREPARED
-   $query = "INSERT INTO blogs(title,description,imageUrl,url,active) VALUES (?,?,?,?,?)" ;
+   $query = "INSERT INTO blogs(title,description,imageUrl,url,category_id,active) VALUES (?,?,?,?,?,?)" ;
    $result = mysqli_prepare($connection,$query) ;
 
-   mysqli_stmt_bind_param($result,'ssssi', $title,$description,$img,$url,$active) ;
+   mysqli_stmt_bind_param($result,'ssssii', $title,$description,$img,$url,$category,$active) ;
    mysqli_stmt_execute($result);
    mysqli_close($connection) ;
 
@@ -103,10 +103,19 @@ function deleteBlog(int $id) {
 
    function getBlogs () {
       include "config_mysql.php" ;
-      $query = "SELECT b.id,b.title,b.description,b.imageUrl,b.url,b.active,c.name from blogs b inner join categories c on b.category_id=c.id" ;
+      // $query = "SELECT b.id,b.title,b.description,b.imageUrl,b.url,b.active,c.name from blogs b inner join categories c on b.category_id=c.id" ;
+      $query = "SELECT * from blogs " ;
       $result = mysqli_query($connection,$query) ;
       mysqli_close($connection) ;
       return $result ;
+   }
+
+   function getCategoriesByBlogId(int $id){
+   include "config_mysql.php" ;
+   $query = "SELECT c.name from blog_category bc inner join categories c on bc.category_id=c.id WHERE bc.blog_id = $id" ;
+   $result = mysqli_query($connection,$query) ;
+   mysqli_close($connection) ;
+   return $result ;
    }
 
    function getCategories(){

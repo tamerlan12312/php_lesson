@@ -1,9 +1,9 @@
 <?php
     require "func_var/variable.php" ;    # variable
     include "func_var/functions.php" ;   # funksiyalar
-    $title = $description = "" ;
-    $title_err = $description_err = "" ;
-     
+    $title = $description = $category = "" ;
+    $title_err = $description_err = $category_err ="" ;
+    $categories = getCategories() ;
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         //validate title
@@ -35,7 +35,12 @@
           $description = control_input($input_desc) ;
       }
 
-
+        $select_category = $_POST["category"] ;
+         if ($select_category == '0') {
+            $category_err = "Kateqoriya secin" ;
+         } else {
+            $category = $_POST["category"] ;
+         }
         $img = $_POST["img"];
         $url = $_POST["url"];
         
@@ -43,8 +48,8 @@
        echo "<br>";
        echo $description ;
 
-        if (empty($title_err) and empty($description_err)) {
-            if (createBlog($title,$description,$img,$url)) {
+        if (empty($title_err) and empty($description_err) and empty($category_err)) {
+            if (createBlog($title,$description,$img,$url,$category)) {
              $_SESSION["message"] = $title ." adli bloq elave olundu" ;
              $_SESSION["type"] = "success" ;
              header ("Location: admin-blogs.php") ;
@@ -83,6 +88,21 @@
                 <div class="mt-3">
                 <label for="">url :</label>
                 <input type="text" class="w-100" name="url">
+                </div>
+                <div class="mt-3">
+                <label for="">Category :</label>
+
+                <select name="category" id="category" class="form-select <?php echo (!empty($category_err)) ? "is-invalid" : "" ;?>">
+                    <option value="0">Seçin :</option>
+                    <?php foreach($categories as $c){
+                        echo "<option value='{$c["id"]}'>{$c["name"]} </option>" ;
+                    } ;?>   
+
+                </select>
+                <span class="invalid-feedback"><?php echo $category_err ;?></span>
+                <script type="text/javascript">
+                  document.getElementById("category").value = "<?php echo $category  ;?>"
+                </script>
                 </div>
                 <br>
                 <input type="submit" class="mt-4" value="Gonder">

@@ -39,7 +39,24 @@
                     <td><?php echo $film["title"] ;?></td>
                     <td><?php echo htmlspecialchars_decode($film["description"]) ;?></td>
                     <td><?php echo $film["url"] ;?></td>
-                    <td><?php echo $film["name"] ;?></td>
+
+                    <td>
+                        <?php 
+                            echo "<ul>";
+                            $results = getCategoriesByBlogId($film["id"]) ;
+                          
+                            if(mysqli_num_rows($results) > 0){
+                                while($category = mysqli_fetch_assoc($results)){
+                                    echo "<li>".$category["name"]."</li>" ;
+                                }
+                            } else {
+                                echo "<li>Kateqoriya secilmedi.</li>" ;
+                            }
+                            echo "</ul>";
+                        ?>
+
+                        
+                    </td>
                     <td>
                         <?php if($film["active"]) :?>
                             <i class="fa-solid fa-check"></i>
