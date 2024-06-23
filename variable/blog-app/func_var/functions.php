@@ -35,10 +35,10 @@ function getUser(string $username){ # props ile username gelecek
        return null ;
 }
  
-function editBlog(int $id,string $title,string $desc,string $img,string $url,int $category,int $active){
+function editBlog(int $id,string $title,string $desc,string $img,string $url,int $active){
    include "config_mysql.php" ;
  
-   $query = "UPDATE blogs SET title='$title',description='$desc',imageUrl = '$img', url='$url',category_id=$category ,active=$active WHERE id=$id";
+   $query = "UPDATE blogs SET title='$title',description='$desc',imageUrl = '$img', url='$url',active=$active WHERE id=$id";
    $result = mysqli_query($connection,$query) ;
    echo mysqli_error($connection) ;
    return $result ; 
@@ -60,6 +60,26 @@ function editBlog(int $id,string $title,string $desc,string $img,string $url,int
 //       break ;
 //     }
 //  }
+}
+
+
+function clearBlogCategories(int $blogid){
+   include "config_mysql.php" ;
+   $query="DELETE FROM blog_category WHERE blog_id=$blogid" ;
+   $result = mysqli_query($connection,$query) ;
+   mysqli_close($connection);
+   return $result ;
+}
+
+function addBlogToCategories(int $blogid,array $categories) {
+   include "config_mysql.php" ;
+   $query="" ;
+   foreach ($categories as $catId){
+      $query .= "INSERT INTO blog_category(blog_id,category_id) VALUES ($blogid,$catId);";
+   }
+   $result = mysqli_multi_query($connection,$query) ;
+   mysqli_close($connection);
+   return $result  ;
 }
 
 function deleteBlog(int $id) {
@@ -110,13 +130,13 @@ function deleteBlog(int $id) {
       return $result ;
    }
 
-   function getCategoriesByBlogId(int $id){
-   include "config_mysql.php" ;
-   $query = "SELECT c.name from blog_category bc inner join categories c on bc.category_id=c.id WHERE bc.blog_id = $id" ;
-   $result = mysqli_query($connection,$query) ;
-   mysqli_close($connection) ;
-   return $result ;
-   }
+   // function getCategoriesByBlogId(int $id){
+   // include "config_mysql.php" ;
+   // $query = "SELECT c.name from blog_category bc inner join categories c on bc.category_id=c.id WHERE bc.blog_id = $id" ;
+   // $result = mysqli_query($connection,$query) ;
+   // mysqli_close($connection) ;
+   // return $result ;
+   // }
 
    function getCategories(){
     include "config_mysql.php" ;
@@ -125,6 +145,15 @@ function deleteBlog(int $id) {
     mysqli_close($connection);
 
     return $result ;
+   }
+
+   function getCategoriesByBlogId (int $id){
+      include "config_mysql.php" ;
+      $query   ="SELECT c.id,c.name from blog_category bc inner join categories c on bc.category_id=c.id WHERE bc.blog_id=$id" ;
+      $result  = mysqli_query($connection,$query) ;
+      mysqli_close($connection) ;
+
+      return $result ;
    }
 
    function getBlogById (int $movieId){

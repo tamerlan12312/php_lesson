@@ -1,38 +1,45 @@
 <?php
     require "func_var/variable.php" ;    # variable
     include "func_var/functions.php" ;   # funksiyalar
-    $id = $_GET["id"] ;
-
-    $result = getBlogById($id) ;
-    $selectedMovie = mysqli_fetch_assoc($result) ;
-    $categories = getCategories() ;
- 
+    $id = $_GET["id"];
+    $result = getBlogById($id);
+    $selectedMovie = mysqli_fetch_assoc($result);    
+    
+    $categories = getCategories();
+    $selectedCategories = getCategoriesByBlogId($id);
+    
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $title = $_POST["title"];
-        $desc =  control_input($_POST["desc"]);
-        $img = $_POST["img"];
+        $description = control_input($_POST["desc"]);
+        $imageUrl = $_POST["img"];
         $url = $_POST["url"];
-        $category = $_POST["category"];
-        $active = isset($_POST["active"]) ? 1 : 0 ;
-        if(editBlog($id,$title,$desc,$img,$url,$category,$active)){
-            $_SESSION["message"] = $title ."adli bloq update olundu" ;
-            $_SESSION["type"] = "warning" ;
-            header ("Location: admin-blogs.php") ;
-        }   else {
-            echo "xeta" ;
+        $categories = isset($_POST["categories"]) ? $_POST["categories"] : [];
+        $isActive = isset($_POST["active"]) ? 1 : 0;
+    
+        if (editBlog($id, $title, $description, $imageUrl, $url, $isActive)) {
+            clearBlogCategories($id); // clear blog categories
+            if (count($categories) > 0) {
+                addBlogToCategories($id, $categories); // add blog to categories
+            }
+            $_SESSION['message'] = $title . " isimli blog güncellendi.";
+            $_SESSION['type'] = "success";
+            header('Location: admin-blogs.php');
+        } else {
+            echo "hata: " . mysqli_error($connection);
         }
-        
-
     }
+    
 
 
 ?>
 <?php require "views/_header.php" ;?>
 <?php require "views/_navbar.php" ;?>
     <div class="container my-5">
+    <form method="POST">
         <div class="row">
-            <div class="col-12">
-            <form method="POST">
+
+            <div class="col-9">
+
                 <label for="">title :</label>
                 <input type="text" class="w-100" name="title" value="<?php echo $selectedMovie["title"] ;?>">
                 <br>
@@ -76,10 +83,42 @@
                 <br>
                 <input type="submit" class="mt-4" value="Gonder">
                 
-               </form>
+        
+            </div>
+
+            <div class="col-3">
+                    <?php
+                    foreach($categories as $c): ?>
+                    <div class="form-check">
+                        <label for="category_<?php echo $c["name"] ;?>"><?php echo $c["name"] ;?></label>
+
+                            <input 
+                            type="checkbox" 
+                            id="category_<?php echo $c["id"] ;?>" 
+                            name="categories[]"
+                            class="form-check-input" 
+                            value="<?php echo $c["id"] ;?>"
+                            <?php
+                             $isChecked = false ;
+                             foreach($selectedCategories as $s){
+                              if ($s["id"] == $c["id"]) {
+                                $isChecked = true ;
+                              }
+                            } ;
+
+                            if ($isChecked) {
+                              echo "checked" ;
+                            }
+                            ?>
+                            >
+
+                    </div>
+    
+                    <?php endforeach ;?>
             </div>
 
         </div>
+        </form>
     </div>
 
     
