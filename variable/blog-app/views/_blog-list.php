@@ -3,7 +3,7 @@ const baslik = "Populyar Filmler" ;
 ?>
 
 
-<div class="col-9">
+                <div class="col-9">
                 <h1 class="mb-4"><?php echo baslik?></h1>
                 <p class="text-muted">
                     <?php echo $ozet?>

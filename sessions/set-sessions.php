@@ -6,7 +6,7 @@ session_start() ; # session bele basladilir oz ozle basladilmir
 
  $_SESSION["username"] = "Tamerlan"; # melumat sessionsdadi
  $_SESSION["password"] = "123" ;     # melumat sessionsdadi
-
+    
 
  # unset($_SESSION["username"]) ; # unset sessiondaki secilen melumati silecekdir
 

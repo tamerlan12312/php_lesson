@@ -156,6 +156,16 @@ function deleteBlog(int $id) {
       return $result ;
    }
 
+
+   function getBlogsByCategoryId (int $id){
+      include "config_mysql.php" ;
+      $query   ="SELECT * from blog_category bc inner join blogs b on bc.blog_id=b.id WHERE bc.category_id=$id" ;
+      $result  = mysqli_query($connection,$query) ;
+      mysqli_close($connection) ;
+
+      return $result ;
+   }
+
    function getBlogById (int $movieId){
      include "config_mysql.php" ;
 
