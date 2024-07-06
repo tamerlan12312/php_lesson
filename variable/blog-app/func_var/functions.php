@@ -166,6 +166,16 @@ function deleteBlog(int $id) {
       return $result ;
    }
 
+
+   function getBlogsByKeyword (string $q){
+      include "config_mysql.php" ;
+      $query   ="SELECT * FROM blogs WHERE title LIKE '%$q%' or description LIKE '%$q%' " ;
+      $result  = mysqli_query($connection,$query) ;
+      mysqli_close($connection) ;
+
+      return $result ;
+   }
+
    function getBlogById (int $movieId){
      include "config_mysql.php" ;
 

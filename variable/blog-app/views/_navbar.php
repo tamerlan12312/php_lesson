@@ -1,21 +1,3 @@
-<?php
-   $notfound = "" ;
-   if (!empty($_GET["q"])) {
-    $keyword = $_GET["q"] ; # global scopdadi 
-    $keyword = trim($keyword) ;
-    // echo $keyword ;
-   # $filmler- yeni bu massive axtarilan deyeri elave ediriky yeni deyisirik
-   $filmler = array_filter($filmler,function ($film) use ($keyword){ # use globalda olan deyisgene catmaga imkan verir # 2 arqument alit massivi ve axtaracagi itemi #filmler massivi kopyalanir - $film
-         return (stristr($film["baslik"],$keyword) or stristr($film["aciklama"],$keyword)) ; #stristr - string daxilinde stringi axtarir yeni baslikda sozu axtarir
-    }) ;
-   } 
-
-   if (count(filmleriGetir()) == 0) {
-    $notfound = "melumat tapilmadi" ;
-   }
-
-?>
-
 <nav class="navbar navbar-expand-lg bg-body-tertiary bg-primary navbar-dark ">
   <div class="container">
     <a class="navbar-brand" href="index.php">Navbar</a>
@@ -28,7 +10,7 @@
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#">Blogs</a>
+          <a class="nav-link" aria-current="page" href="blogs.php">Blogs</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="admin-blogs.php">Admin Blogs</a>
@@ -54,7 +36,7 @@
         </li>
       <?php endif ;?>
       </ul>
-      <form class="d-flex" role="search" action="index.php" method="GET">
+      <form class="d-flex" role="search" action="blogs.php" method="GET">
         <input class="form-control me-2" name="q" type="search"  placeholder="Search" aria-label="Search">
         <button class="btn btn-danger" type="submit">Search</button>
       </form>

@@ -9,8 +9,22 @@ const baslik = "Populyar Filmler" ;
                     <?php echo $ozet?>
                 </p>
 
-                <?php $result = getBlogs() ; while ($film = mysqli_fetch_assoc($result)) : ?>
-                <?php if($film["active"]) :?>
+                <?php 
+                 if (isset($_GET["categoryid"]) and is_numeric($_GET["categoryid"])) {
+                     $result = getBlogsByCategoryId($_GET["categoryid"]) ;
+                 } else if(isset($_GET["q"])){
+                     $result = getBlogsByKeyword($_GET["q"]) ;
+                 }
+                 else {
+                    $result = getBlogs() ;
+                 }
+                               
+                ?>
+
+   <?php if(mysqli_num_rows($result) > 0) :?>
+
+              <?php while($film = mysqli_fetch_assoc($result)) : ?>  
+                      <?php if($film["active"]) :?>
                         <div class="card mb-3">
                             <div class="row">
                                 <div class="col-3">
@@ -29,10 +43,12 @@ const baslik = "Populyar Filmler" ;
                             </div>
                         </div>
                  <?php endif ;?>
-                <?php endwhile ; ?>
+                 <?php endwhile ; ?>
 
-                <h4 class="text-center">
-                <?php echo $notfound ;?>
-                </h4>
+         <?php else:?>
+        <div class="alert alert-warning">Not result found</div>
+
+                 <?php endif ;?>
+
 
             </div>
