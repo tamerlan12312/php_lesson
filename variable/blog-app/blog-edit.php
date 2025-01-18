@@ -15,8 +15,9 @@
         $url = $_POST["url"];
         $categories = isset($_POST["categories"]) ? $_POST["categories"] : [];
         $isActive = isset($_POST["active"]) ? 1 : 0;
+        $isHome = isset($_POST["isHome"]) ? 1 : 0;
     
-        if (editBlog($id, $title, $description, $imageUrl, $url, $isActive)) {
+        if (editBlog($id, $title, $description, $imageUrl, $url, $isActive,$isHome)) {
             clearBlogCategories($id); // clear blog categories
             if (count($categories) > 0) {
                 addBlogToCategories($id, $categories); // add blog to categories
@@ -56,7 +57,7 @@
                 <label for="">url :</label>
                 <input type="text" class="w-100" name="url" value="<?php echo $selectedMovie["url"] ;?>">
                 </div>
-                <div class="mt-3">
+                <!-- <div class="mt-3">
                 <label for="">Category :</label>
 
                 <select name="category" id="category" class="form-select <?php echo (!empty($category_err)) ? "is-invalid" : "" ;?>">
@@ -74,11 +75,8 @@
                 <script type="text/javascript">
                   document.getElementById("category").value = "<?php echo $category  ;?>"
                 </script>
-                </div>
-                <div class="form-check mt-3">
-                <label for="" class="form-check-label">Active</label>
-                <input type="checkbox" class="form-check-input " name="active" <?php if($selectedMovie["active"]) {echo "checked" ;} ?>>
-                </div>
+                </div> -->
+
                 
                 <br>
                 <input type="submit" class="mt-4" value="Gonder">
@@ -113,9 +111,21 @@
                             >
 
                     </div>
-    
                     <?php endforeach ;?>
+
+                    <hr>
+           
+           
+                    <div class="form-check mt-3">
+                <label for="" class="form-check-label">Active</label>
+                <input type="checkbox" class="form-check-input " name="active" <?php if($selectedMovie["active"]) {echo "checked" ;} ?>>
+                </div>
+                <div class="form-check mt-3">
+                <label for="isHome" class="form-check-label">Is home</label>
+                <input type="checkbox" class="form-check-input " name="isHome" <?php if($selectedMovie["isHome"]) {echo "checked" ;} ?>>
+                </div>
             </div>
+
 
         </div>
         </form>

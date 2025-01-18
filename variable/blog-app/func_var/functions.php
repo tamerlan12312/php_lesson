@@ -35,10 +35,10 @@ function getUser(string $username){ # props ile username gelecek
        return null ;
 }
  
-function editBlog(int $id,string $title,string $desc,string $img,string $url,int $active){
+function editBlog(int $id,string $title,string $desc,string $img,string $url,int $active,int $isHome){
    include "config_mysql.php" ;
  
-   $query = "UPDATE blogs SET title='$title',description='$desc',imageUrl = '$img', url='$url',active=$active WHERE id=$id";
+   $query = "UPDATE blogs SET title='$title',description='$desc',imageUrl = '$img', url='$url',active=$active,isHome=$isHome WHERE id=$id";
    $result = mysqli_query($connection,$query) ;
    echo mysqli_error($connection) ;
    return $result ; 
@@ -62,6 +62,15 @@ function editBlog(int $id,string $title,string $desc,string $img,string $url,int
 //  }
 }
 
+function getHomePageBlogs(){
+   include "config_mysql.php" ;
+   // $query = "SELECT b.id,b.title,b.description,b.imageUrl,b.url,b.active,c.name from blogs b inner join categories c on b.category_id=c.id" ;
+   $query = "SELECT * from blogs WHERE active=1 and isHome=1 ORDER BY dateAdded DESC LIMIT 3" ; // burada active ve isHome1 olanlari getirir ORDER BY dateAdded DESC ise en teze bloglari en ustde gosterecekdir
+   # LIMIT - limitleyir 3 dene gosterecekdir
+   $result = mysqli_query($connection,$query) ;
+   mysqli_close($connection) ;
+   return $result ;
+}
 
 function clearBlogCategories(int $blogid){
    include "config_mysql.php" ;
@@ -90,13 +99,13 @@ function deleteBlog(int $id) {
    mysqli_close($connection) ;
 }
 
- function createBlog (string $title, string $description, string $img, string $url,int $category,int $active = 0){ #category select ile geldiyi ucun idsini goturur ona gore post etdikde category_id yazilir
+ function createBlog (string $title, string $description, string $img, string $url,int $active = 0){ #category select ile geldiyi ucun idsini goturur ona gore post etdikde category_id yazilir
    include "config_mysql.php" ;
    # MYSQL PREPARED
-   $query = "INSERT INTO blogs(title,description,imageUrl,url,category_id,active) VALUES (?,?,?,?,?,?)" ;
+   $query = "INSERT INTO blogs(title,description,imageUrl,url,active) VALUES (?,?,?,?,?)" ;
    $result = mysqli_prepare($connection,$query) ;
 
-   mysqli_stmt_bind_param($result,'ssssii', $title,$description,$img,$url,$category,$active) ;
+   mysqli_stmt_bind_param($result,'ssssi', $title,$description,$img,$url,$active) ;
    mysqli_stmt_execute($result);
    mysqli_close($connection) ;
 
